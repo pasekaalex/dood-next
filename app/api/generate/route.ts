@@ -68,10 +68,8 @@ export async function POST(req: NextRequest) {
     // Always use original ref for now
     const ref = getRandomRefImage();
     const imageBuffer = readFileSync(ref.path);
+    const base64Image = imageBuffer.toString('base64');
     console.log('Reference image:', ref.name, '- Size:', imageBuffer.length, 'bytes');
-
-    const blob = new Blob([imageBuffer], { type: 'image/jpeg' });
-    console.log('Blob created, size:', blob.size, 'bytes');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
     console.log('Final prompt (first 200 chars):', fullPrompt.substring(0, 200));
@@ -79,7 +77,7 @@ export async function POST(req: NextRequest) {
     const formData = new FormData();
     formData.append('model', 'gpt-image-1');
     formData.append('size', '1024x1024');
-    formData.append('image', blob, ref.name);
+    formData.append('image', `data:image/jpeg;base64,${base64Image}`);
     formData.append('prompt', fullPrompt);
 
     const response = await fetch('https://api.openai.com/v1/images/edits', {

@@ -34,7 +34,7 @@ export default function Hero() {
               href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold transition-all hover:brightness-110 hover:scale-105"
               style={{
                 background: 'var(--primary)',
                 color: 'white',
