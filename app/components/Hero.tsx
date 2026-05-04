@@ -15,11 +15,11 @@ export default function Hero() {
           Just a Dood Being a Dood.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+        <div className="flex justify-center w-full">
           <a href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump"
             target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm"
-            style={{background: 'var(--primary)', color: 'white', boxShadow: '0 5px 0 #b84a1e', minWidth: '160px'}}>
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold"
+            style={{background: 'var(--primary)', color: 'white', boxShadow: '0 5px 0 #b84a1e', minWidth: '180px', fontFamily: 'var(--font-bangers), cursive', fontSize: '1.2rem', letterSpacing: '1px'}}>
             🚀 Buy DOOD
           </a>
         </div>
