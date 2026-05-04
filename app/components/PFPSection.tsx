@@ -84,10 +84,10 @@ export default function PFPSection() {
             <textarea
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
-              placeholder="a dude grilling at a backyard BBQ with cowboy hat and beer..."
+              placeholder="Describe your DOOD... a dude grilling, a chill dude with shades, a cowboy at a cookout..."
               rows={4}
-              className="w-full max-w-sm rounded-xl p-6 text-base resize-none outline-none font-semibold transition-colors leading-relaxed"
-              style={{border: '2px solid var(--surface)', color: '#1A1A2E', background: '#f5f5f5', fontSize: '1rem', lineHeight: '1.6'}}
+              className="w-full max-w-sm rounded-xl p-6 text-base resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
+              style={{border: '2px solid var(--surface)', color: '#1A1A2E', background: '#f5f5f5', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center', paddingTop: '32px'}}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
