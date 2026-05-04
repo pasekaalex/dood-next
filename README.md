@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# $DOOD — DOOD PFP Generator
 
-## Getting Started
+**Live:** [https://doodpfp.lol](https://doodpfp.lol)
 
-First, run the development server:
+Just a dood being a dood. Solana memecoin with an AI-powered PFP generator.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Links
+
+- **Buy:** [Jupiter Swap](https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump)
+- **Chart:** [DexScreener](https://dexscreener.com/solana/fr2azeueszdfrhye41xldfxmuzjzlad74u88142tc7pf)
+- **X:** [@doodpfp](https://x.com/doodpfp)
+- **Community:** [X Community](https://x.com/i/communities/1832939399241502938)
+
+## Contract
+
+```
+4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework:** Next.js 16 (App Router)
+- **Styling:** Tailwind CSS v4
+- **Fonts:** Bangers + Nunito (Google Fonts)
+- **API:** OpenAI `gpt-image-1` for PFP generation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup
 
-## Learn More
+```bash
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Add `OPENAI_API_KEY` env var for PFP generation to work.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+├── page.tsx           # Main landing page
+├── components/
+│   ├── Hero.tsx       # Hero section with $DOOD branding
+│   ├── Stats.tsx      # Live token stats from DexScreener
+│   ├── PFPSection.tsx # AI PFP generator
+│   └── Community.tsx  # Social links + contract address
+└── api/
+    └── generate/      # Image generation endpoint
+```
 
-## Deploy on Vercel
+## Legal
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+$DOOD is a memecoin. Not financial advice. DYOR.
