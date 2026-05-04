@@ -80,7 +80,7 @@ export default function PFPSection() {
 
         <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)'}}>
 
-          <div className="p-6 md:p-10 space-y-4 flex flex-col items-center" style={{background: 'white'}}>
+          <div className="p-8 md:p-10 space-y-4 flex flex-col items-center" style={{background: 'white'}}>
             <textarea
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
