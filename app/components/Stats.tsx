@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 const API = 'https://api.dexscreener.com/latest/dex/tokens/4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
 
@@ -16,10 +16,8 @@ function formatNum(n: number): string {
 }
 
 export default function Stats() {
-  const [stats, setStats] = useState<{price: string; marketCap: string} | null>(null);
-  const [flash, setFlash] = useState(false);
+  const [marketCap, setMarketCap] = useState<string | null>(null);
   const [pulse, setPulse] = useState(false);
-  const prevPrice = useRef<string | null>(null);
 
   useEffect(() => {
     const fetchStats = () => {
@@ -27,24 +25,13 @@ export default function Stats() {
         const p = data?.pairs?.[0];
         if (!p) return;
 
-        const price = parseFloat(p.priceUsd);
         const mcRaw = parseFloat(p.marketCap || p.info?.marketCap || '0');
         const liquidity = parseFloat(p.liquidity?.usd || '0');
-        const marketCap = mcRaw > 0 ? mcRaw : liquidity * 5;
+        const mc = mcRaw > 0 ? mcRaw : liquidity * 5;
 
-        const newPrice = price < 0.0001 ? '$' + price.toExponential(2) : '$' + price.toFixed(6);
-
-        setStats({
-          price: newPrice,
-          marketCap: formatNum(marketCap),
-        });
-
-        if (prevPrice.current && prevPrice.current !== newPrice) {
-          setFlash(true);
-          setPulse(true);
-          setTimeout(() => { setFlash(false); setPulse(false); }, 500);
-        }
-        prevPrice.current = newPrice;
+        setMarketCap(formatNum(mc));
+        setPulse(true);
+        setTimeout(() => setPulse(false), 500);
       }).catch(() => {});
     };
 
@@ -56,55 +43,36 @@ export default function Stats() {
   return (
     <section className="w-full flex flex-col items-center px-4 pt-2 pb-6">
       <div className="w-full max-w-xl">
-        <div className="grid grid-cols-2 gap-2">
-          {[
-            {
-              label: 'Price',
-              value: stats?.price ?? <Spinner />,
-              key: 'price',
-              flash,
-              pulse,
-            },
-            {
-              label: 'Market Cap',
-              value: stats?.marketCap ?? <Spinner />,
-              key: 'mc',
-              flash: false,
-              pulse: false,
-            },
-          ].map((s) => (
+        <div className="flex justify-center">
+          <div
+            className="rounded-xl p-4 text-center"
+            style={{
+              background: 'var(--secondary)',
+              border: '4px solid var(--primary)',
+              boxShadow: '6px 6px 0 var(--primary)',
+              transition: 'transform 0.2s',
+              transform: pulse ? 'scale(1.05)' : 'scale(1)',
+              minWidth: '160px',
+            }}
+          >
             <div
-              key={s.key}
-              className="rounded-xl p-4 text-center"
+              className="font-black text-xl md:text-2xl mb-0.5"
               style={{
-                background: 'var(--secondary)',
-                border: `4px solid var(--primary)`,
-                boxShadow: `6px 6px 0 var(--primary)`,
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                transform: s.pulse ? 'scale(1.05)' : 'scale(1)',
+                fontFamily: "'Bangers', cursive",
+                color: '#1A1A2E',
+                textShadow: '2px 2px 0 var(--primary)',
+                letterSpacing: '1px',
               }}
             >
-              <div
-                className="font-black text-lg md:text-xl mb-0.5"
-                style={{
-                  fontFamily: "'Bangers', cursive",
-                  color: '#1A1A2E',
-                  textShadow: `2px 2px 0 var(--primary)`,
-                  letterSpacing: '1px',
-                  transition: 'transform 0.2s',
-                  transform: s.flash ? 'scale(1.15)' : 'scale(1)',
-                }}
-              >
-                {s.value}
-              </div>
-              <div
-                className="text-xs font-bold uppercase"
-                style={{ color: '#1A1A2E', letterSpacing: '2px', fontFamily: 'var(--font-bangers), cursive' }}
-              >
-                {s.label}
-              </div>
+              {marketCap ?? <Spinner />}
             </div>
-          ))}
+            <div
+              className="text-xs font-bold uppercase"
+              style={{ color: '#1A1A2E', letterSpacing: '2px', fontFamily: 'var(--font-bangers), cursive' }}
+            >
+              Market Cap
+            </div>
+          </div>
         </div>
       </div>
     </section>

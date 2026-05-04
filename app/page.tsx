@@ -1,5 +1,4 @@
 import Hero from './components/Hero';
-import Stats from './components/Stats';
 import PFPSection from './components/PFPSection';
 import Community from './components/Community';
 import Slideshow from './components/Slideshow';
@@ -12,7 +11,6 @@ export default function Home() {
         <Slideshow />
         <PFPSection />
         <Community />
-        <Stats />
       </div>
     </main>
   );

@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const CA = '4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
+const STATS_API = 'https://api.dexscreener.com/latest/dex/tokens/4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
+  const [marketCap, setMarketCap] = useState<string | null>(null);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(CA).then(() => {
@@ -14,9 +16,25 @@ export default function Hero() {
     });
   };
 
+  useEffect(() => {
+    const fetchMC = () => {
+      fetch(STATS_API).then(r => r.json()).then(data => {
+        const p = data?.pairs?.[0];
+        if (!p) return;
+        const mcRaw = parseFloat(p.marketCap || p.info?.marketCap || '0');
+        const liquidity = parseFloat(p.liquidity?.usd || '0');
+        const mc = mcRaw > 0 ? mcRaw : liquidity * 5;
+        const formatted = mc >= 1e9 ? '$' + (mc / 1e9).toFixed(2) + 'B' : mc >= 1e6 ? '$' + (mc / 1e6).toFixed(2) + 'M' : mc >= 1e3 ? '$' + (mc / 1e3).toFixed(1) + 'K' : '$' + mc.toFixed(2);
+        setMarketCap(formatted);
+      }).catch(() => {});
+    };
+    fetchMC();
+    const interval = setInterval(fetchMC, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center text-center px-4 pt-4 pb-2 min-h-[20vh]">
+    <section className="flex flex-col items-center justify-center text-center px-4 pt-8 pb-2 min-h-[20vh]">
       <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-1">
 
         <div className="inline-block px-4 py-3 rounded-xl" style={{background: 'var(--secondary)', boxShadow: '4px 4px 0 var(--primary)'}}>
@@ -38,7 +56,7 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="flex flex-col items-center justify-center gap-2 mt-4">
+        <div className="flex flex-col items-center justify-center gap-2 mt-8">
           <button
             onClick={handleCopy}
             className="inline-flex rounded-xl bg-white px-3 py-2 cursor-pointer transition-all hover:scale-105"
@@ -53,6 +71,12 @@ export default function Hero() {
               </>
             )}
           </button>
+
+          {marketCap && (
+            <div className="rounded-xl px-4 py-2" style={{background: 'var(--secondary)', border: '3px solid var(--primary)'}}>
+              <span className="font-bold text-lg" style={{fontFamily: 'var(--font-bangers), cursive', color: '#1A1A2E', letterSpacing: '1px'}}>{marketCap}</span>
+            </div>
+          )}
         </div>
 
       </div>

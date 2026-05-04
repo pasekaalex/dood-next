@@ -75,14 +75,14 @@ export default function PFPSection() {
 
         <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)'}}>
 
-          <div className="p-4 md:p-6 space-y-5 flex flex-col items-center" style={{background: 'white'}}>
+          <div className="p-5 md:p-8 space-y-8 flex flex-col items-center" style={{background: 'white'}}>
             <textarea
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
               placeholder="Describe your DOOD... a dude grilling, a chill dude with shades, a cowboy at a cookout..."
-              rows={3}
+              rows={2}
               className="w-full max-w-sm rounded-xl resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
-              style={{border: '3px solid #e5e5e5', color: '#1A1A2E', background: '#f5f5f5', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center', padding: '20px 16px', boxShadow: 'inset 2px 2px 8px rgba(0,0,0,0.08)'}}
+              style={{border: '2px solid var(--surface)', color: '#1A1A2E', background: '#f5f5f5', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center', padding: '16px'}}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
@@ -94,7 +94,7 @@ export default function PFPSection() {
                 background: canGenerate ? 'var(--primary)' : '#999',
                 color: 'white',
                 fontSize: '1.1rem',
-                padding: '14px 48px',
+                padding: '10px 36px',
                 boxShadow: canGenerate ? '0 5px 0 #b84a1e' : 'none',
                 opacity: state === 'loading' ? 0.7 : 1,
                 letterSpacing: '0.5px',

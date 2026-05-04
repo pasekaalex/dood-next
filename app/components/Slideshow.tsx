@@ -26,7 +26,10 @@ export default function Slideshow() {
 
   return (
     <div className="w-full flex justify-center px-4">
-      <div className="relative w-full max-w-sm" style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '16px', border: '4px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)' }}>
+      <div
+        className="relative w-full max-w-[75%] md:max-w-[90%]"
+        style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '16px', border: '4px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)' }}
+      >
         {SLIDES.map((src, i) => (
           <img
             key={src}
