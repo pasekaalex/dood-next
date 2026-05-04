@@ -5,17 +5,23 @@ import { join } from 'path';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 60 * 1000;
 
-const BASE_PROMPT = `Use the reference image only for the overall crude flat cartoon style, character framing, awkward facial proportions, thick neck silhouette, thin black outlines, flat colors, and deadpan adult-animation mood.
+const BASE_PROMPT = `You are an AI image generator creating characters in the CRUDE CARTOON STYLE shown in the reference image.
 
-Do NOT copy the exact character identity, hat, logo, face, outfit, body type, or background from the reference image.
+STYLE RULES - COPY THIS EXACTLY:
+- Flat 2D cartoon, hand-drawn look, thick black outlines
+- Simple shapes, no realistic details or gradients
+- Muted or bright solid colors, plain background
+- Small/beady eyes, simple mouths, minimal detail
+- Blocky bodies, thick necks, simple silhouettes
+- Looks like Adult Swim / Metalocalypse / crude YouTube animation
 
-Generate a new original character each time.
+STRICT REQUIREMENTS:
+- Use ONLY the reference image for the art style and character design approach
+- The character should look like it was drawn by the same animator
+- Keep the same level of detail and simplicity
+- Do NOT add photorealistic elements, soft shading, or 3D effects
+- Maintain the same proportions and rendering style
 
-Randomize:
-skin tone, body type, neck width, face shape, mustache, hairstyle, eye color, facial hair, hat, shirt style, shirt color, outfit details, stains/accessories.
-
-Keep:
-flat 2D cartoon style, tiny dull eyes, thick neck, awkward centered face, deadpan expression, simple suburban background, no gradients, no realistic lighting.
 
 User scene:
 PLACEHOLDER_USER_PROMPT
@@ -28,22 +34,10 @@ function getClientIP(req: NextRequest): string {
 }
 
 function getRandomRefImage(): { path: string; name: string } {
-  const slideshowRefs = [
-    'slide-1.jpg', 'slide-2.jpg', 'slide-3.jpg',
-    'slide-4.jpg', 'slide-5.jpg', 'slide-6.jpg',
-    'slide-7.jpg', 'slide-8.jpg', 'slide-9.jpg'
-  ];
-
-  // 50% chance original ref, 50% chance slideshow
-  const useSlideshow = Math.random() < 0.5;
-  const slides = slideshowRefs.sort(() => Math.random() - 0.5);
-  const slide = slides[0];
-
+  // Always use original dood-ref-1.jpg for consistent style
   return {
-    path: useSlideshow
-      ? join(process.cwd(), 'public', 'slideshow', slide)
-      : join(process.cwd(), 'public', 'pfp-refs', 'dood-ref-1.jpg'),
-    name: useSlideshow ? slide : 'dood-ref-1.jpg'
+    path: join(process.cwd(), 'public', 'pfp-refs', 'dood-ref-1.jpg'),
+    name: 'dood-ref-1.jpg'
   };
 }
 
@@ -77,7 +71,7 @@ export async function POST(req: NextRequest) {
   try {
     rateLimitMap.set(ip, Date.now());
 
-    // Pick random reference image
+    // Always use original ref for now
     const ref = getRandomRefImage();
     console.log('Using reference:', ref.name);
 
