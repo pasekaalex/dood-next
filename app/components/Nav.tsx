@@ -13,37 +13,36 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-3" style={{background: 'rgba(255,245,230,0.97)', backdropFilter: 'blur(8px)', borderBottom: '2px solid rgba(255,107,53,0.15)'}}>
-      <div className="max-w-xl mx-auto">
+    <nav className="fixed top-0 left-0 right-0 z-50" style={{background: 'rgba(255,245,230,0.97)', backdropFilter: 'blur(8px)', borderBottom: '2px solid rgba(255,107,53,0.15)'}}>
+      <div className="max-w-xl mx-auto flex items-center justify-between px-4 py-3">
 
-        <div className="flex items-center justify-between">
+        <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: '1.8rem', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
+          DOOD
+        </span>
 
-          <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: '1.8rem', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
-            DOOD
-          </span>
-
-          {/* Desktop: inline links */}
-          <div className="hidden sm:flex gap-2 items-center">
-            {links.map((l) => (
-              <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-xl text-sm font-bold no-underline"
-                style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
-                {l.label}
-              </a>
-            ))}
-          </div>
-
-          {/* Mobile: hamburger */}
-          <button onClick={() => setOpen(!open)}
-            className="sm:hidden px-5 py-3 rounded-xl font-bold text-base cursor-pointer"
-            style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
-            {open ? '✕' : '☰'}
-          </button>
+        {/* Desktop: inline links */}
+        <div className="hidden sm:flex gap-2">
+          {links.map((l) => (
+            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
+              className="px-5 py-2.5 rounded-xl text-sm font-bold no-underline"
+              style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
+              {l.label}
+            </a>
+          ))}
         </div>
 
-        {/* Mobile menu dropdown */}
-        {open && (
-          <div className="mt-3 rounded-xl overflow-hidden sm:hidden" style={{border: '3px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)'}}>
+        {/* Mobile: hamburger */}
+        <button onClick={() => setOpen(!open)}
+          className="sm:hidden px-5 py-3 rounded-xl font-bold text-base cursor-pointer"
+          style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
+          {open ? '✕' : '☰'}
+        </button>
+      </div>
+
+      {/* Mobile menu dropdown */}
+      {open && (
+        <div className="max-w-xl mx-auto px-4" style={{paddingBottom: '0.75rem'}}>
+          <div className="rounded-xl overflow-hidden" style={{border: '3px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)'}}>
             {links.map((l) => (
               <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
@@ -53,8 +52,8 @@ export default function Nav() {
               </a>
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </nav>
   );
 }
