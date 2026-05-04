@@ -22,12 +22,6 @@ export default function Hero() {
             style={{background: 'var(--primary)', color: 'white', boxShadow: '0 5px 0 #b84a1e', minWidth: '160px'}}>
             🚀 Buy DOOD
           </a>
-          <a href="https://dexscreener.com/solana/fr2azeueszdfrhye41xldfxmuzjzlad74u88142tc7pf"
-            target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm"
-            style={{background: 'white', color: '#1A1A2E', boxShadow: '0 5px 0 #ccc', border: '2px solid #1A1A2E', minWidth: '160px'}}>
-            📊 Chart
-          </a>
         </div>
 
       </div>
