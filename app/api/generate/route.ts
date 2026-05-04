@@ -89,8 +89,6 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    rateLimitMap.set(ip, Date.now());
-
     const ref = getRandomRefImage();
     const imageBuffer = readFileSync(ref.path);
     const blob = new Blob([imageBuffer], { type: 'image/jpeg' });
@@ -100,7 +98,7 @@ export async function POST(req: NextRequest) {
     console.log('Final prompt (first 200 chars):', fullPrompt.substring(0, 200));
 
     const formData = new FormData();
-    formData.append('model', 'dall-e-2');
+    formData.append('model', 'gpt-image-1');
     formData.append('image', blob, ref.name);
     formData.append('prompt', fullPrompt);
 
@@ -127,6 +125,7 @@ export async function POST(req: NextRequest) {
       throw new Error('No image URL or base64 in response');
     }
 
+    rateLimitMap.set(ip, Date.now());
     return NextResponse.json({ imageUrl });
   } catch (e) {
     console.error('Image generation error:', e);

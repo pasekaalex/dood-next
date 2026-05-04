@@ -101,7 +101,7 @@ export default function PFPSection({ onGenerated }: Props) {
             color: 'white',
             fontSize: '1.1rem',
             padding: '10px 40px',
-            boxShadow: canGenerate ? '0 5px 0 #b84a1e' : 'none',
+            boxShadow: 'none',
             opacity: state === 'loading' ? 0.7 : 1,
             letterSpacing: '0.5px',
           }}>
