@@ -52,14 +52,9 @@ export default function PFPSection() {
       const res = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          prompt: prompt.trim(),
-          images: REF_IMAGES,
-        }),
+        body: JSON.stringify({ prompt: prompt.trim(), images: REF_IMAGES }),
       });
-
       if (!res.ok) throw new Error('Generation failed');
-
       const data = await res.json();
       setImageUrl(data.imageUrl);
       setState('done');
@@ -75,17 +70,17 @@ export default function PFPSection() {
   const canGenerate = state !== 'loading' && prompt.trim().length > 0 && timeLeft === 0;
 
   return (
-    <section className="w-full flex flex-col items-center px-6 pb-10">
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center">
+    <section className="w-full flex flex-col items-center px-4 md:px-8 pb-10">
+      <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
 
-        <h2 className="text-center text-3xl font-black mb-1 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
+        <h2 className="text-center text-3xl md:text-4xl font-black mb-1 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
           DOOD PFP GENERATOR
         </h2>
         <p className="text-center text-sm opacity-50 mb-4 font-semibold w-full">Describe your DOOD. AI generates it in seconds.</p>
 
         <div className="rounded-2xl overflow-hidden w-full" style={{border: '4px solid var(--primary)', boxShadow: '6px 6px 0 var(--primary)'}}>
 
-          <div className="p-4 space-y-3 flex flex-col items-center" style={{background: 'white'}}>
+          <div className="p-4 md:p-6 space-y-3 flex flex-col items-center" style={{background: 'white'}}>
             <textarea
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
@@ -96,7 +91,7 @@ export default function PFPSection() {
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
-            <div className="flex gap-2 w-full justify-center">
+            <div className="flex gap-2 w-full max-w-md mx-auto">
               <button
                 onClick={handleGenerate}
                 disabled={!canGenerate}
@@ -130,16 +125,16 @@ export default function PFPSection() {
           </div>
 
           {(state === 'done' || state === 'loading') && (
-            <div className="p-4 flex justify-center" style={{background: 'var(--surface)'}}>
+            <div className="p-4 md:p-6 flex justify-center" style={{background: 'var(--surface)'}}>
               {state === 'loading' ? (
-                <div className="flex items-center justify-center h-64 rounded-xl w-full" style={{background: 'rgba(255,255,255,0.5)'}}>
+                <div className="flex items-center justify-center h-64 rounded-xl w-full max-w-md" style={{background: 'rgba(255,255,255,0.5)'}}>
                   <div className="text-center">
                     <div className="text-4xl mb-2 animate-pulse">🎨</div>
                     <p className="text-sm font-bold opacity-60">Creating your DOOD...</p>
                   </div>
                 </div>
               ) : imageUrl ? (
-                <img src={imageUrl} alt="Generated DOOD" className="w-full rounded-xl max-w-sm" style={{aspectRatio: '1/1', objectFit: 'cover'}} />
+                <img src={imageUrl} alt="Generated DOOD" className="rounded-xl" style={{aspectRatio: '1/1', maxWidth: '512px', width: '100%', objectFit: 'cover'}} />
               ) : null}
             </div>
           )}
