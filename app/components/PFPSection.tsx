@@ -5,11 +5,6 @@ import { useState } from 'react';
 const RATE_LIMIT_MS = 3 * 60 * 1000;
 const STORAGE_KEY = 'dood_last_gen';
 
-const REF_IMAGES = [
-  '/pfp-refs/dood-grill-master.jpg',
-  '/pfp-refs/chad-mccool-5.jpg',
-];
-
 type State = 'idle' | 'loading' | 'done' | 'error';
 
 export default function PFPSection() {
@@ -80,41 +75,40 @@ export default function PFPSection() {
 
         <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)'}}>
 
-          <div className="p-6 md:p-6 space-y-5 flex flex-col items-center" style={{background: 'white'}}>
+          <div className="p-4 md:p-6 space-y-5 flex flex-col items-center" style={{background: 'white'}}>
             <textarea
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
               placeholder="Describe your DOOD... a dude grilling, a chill dude with shades, a cowboy at a cookout..."
               rows={3}
-              className="w-full max-w-sm rounded-xl p-6 text-base resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
-              style={{border: '2px solid var(--surface)', color: '#1A1A2E', background: '#f5f5f5', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center'}}
+              className="w-full max-w-sm rounded-xl resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
+              style={{border: '3px solid #e5e5e5', color: '#1A1A2E', background: '#f5f5f5', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center', padding: '20px 16px', boxShadow: 'inset 2px 2px 8px rgba(0,0,0,0.08)'}}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
-            <div className="flex gap-2 w-full max-w-sm mx-auto py-4 justify-center">
-              <button
-                onClick={handleGenerate}
-                disabled={!canGenerate}
-                className="py-2 rounded-xl font-bold text-sm cursor-pointer transition-all"
-                style={{
-                  background: canGenerate ? 'var(--primary)' : '#ccc',
-                  color: 'white',
-                  fontSize: '1rem',
-                  padding: '10px 32px',
-                  boxShadow: canGenerate ? '0 4px 0 #b84a1e' : 'none',
-                  opacity: state === 'loading' ? 0.7 : 1,
-                  minWidth: '160px',
-                }}>
-                {state === 'loading' ? '⏳ Generating...' : '🎨 Generate DOOD'}
-              </button>
-              {state === 'done' && imageUrl && (
-                <a href={imageUrl} download="dood-pfp.png"
-                  className="px-5 py-3 rounded-xl font-bold text-sm"
-                  style={{background: 'var(--secondary)', color: '#1A1A2E', boxShadow: '0 5px 0 #E6B800'}}>
-                  ⬇️ Save
-                </a>
-              )}
-            </div>
+            <button
+              onClick={handleGenerate}
+              disabled={!canGenerate}
+              className="rounded-xl font-bold cursor-pointer transition-all hover:brightness-105"
+              style={{
+                background: canGenerate ? 'var(--primary)' : '#999',
+                color: 'white',
+                fontSize: '1.1rem',
+                padding: '14px 48px',
+                boxShadow: canGenerate ? '0 5px 0 #b84a1e' : 'none',
+                opacity: state === 'loading' ? 0.7 : 1,
+                letterSpacing: '0.5px',
+              }}>
+              {state === 'loading' ? '⏳ Generating...' : '🎨 Generate DOOD'}
+            </button>
+
+            {state === 'done' && imageUrl && (
+              <a href={imageUrl} download="dood-pfp.png"
+                className="px-5 py-3 rounded-xl font-bold text-sm"
+                style={{background: 'var(--secondary)', color: '#1A1A2E', boxShadow: '0 5px 0 #E6B800'}}>
+                ⬇️ Save
+              </a>
+            )}
 
             {timeLeft > 0 && state !== 'done' && (
               <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>
