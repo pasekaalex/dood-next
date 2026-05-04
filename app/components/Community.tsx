@@ -40,13 +40,13 @@ export default function Community() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full">
-          <div className="inline-flex rounded-xl bg-white px-4 py-3" style={{border: '3px solid var(--primary)'}}>
+          <div className="inline-flex rounded-xl bg-white px-5 py-3" style={{border: '3px solid var(--primary)'}}>
             <span className="font-bold text-sm uppercase tracking-wider shrink-0" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px'}}>CA</span>
             <code className="font-mono text-sm sm:text-base break-all font-bold" style={{color: '#1A1A2E'}}>{CA}</code>
           </div>
           <button
             onClick={handleCopy}
-            className="px-8 py-4 rounded-xl font-bold text-sm cursor-pointer transition-all hover:scale-105"
+            className="px-6 py-4 rounded-xl font-bold text-sm cursor-pointer transition-all hover:scale-105"
             style={{
               background: copied ? '#16A34A' : 'var(--primary)',
               color: 'white',
