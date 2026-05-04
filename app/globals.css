@@ -28,7 +28,7 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: url('/background-sky.jpg') center center / cover no-repeat fixed;
+  background: url('/cloudshd.png') center center / cover no-repeat fixed;
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
