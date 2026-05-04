@@ -45,7 +45,7 @@ export default function Community() {
         </div>
 
         {/* Contract Address */}
-        <div className="rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-3 bg-white w-full" style={{border: '4px solid var(--primary)', boxShadow: '6px 6px 0 var(--secondary)'}}>
+        <div className="rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-3 bg-white w-full" style={{border: '3px solid var(--primary)'}}>
           <span className="font-bold text-sm uppercase tracking-wider" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px'}}>CA</span>
           <code className="font-mono text-sm sm:text-base flex-1 break-all font-bold" style={{color: '#1A1A2E'}}>{CA}</code>
           <button
@@ -55,7 +55,6 @@ export default function Community() {
               background: copied ? '#16A34A' : 'var(--primary)',
               color: 'white',
               boxShadow: copied ? '0 4px 0 #15803D' : '0 4px 0 #b84a1e',
-              minWidth: '80px',
             }}
           >
             {copied ? '✓ Copied' : 'Copy'}
