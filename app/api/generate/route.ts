@@ -5,26 +5,20 @@ import { join } from 'path';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 60 * 1000;
 
-const BASE_PROMPT = `You are an AI image generator creating characters in the CRUDE CARTOON STYLE shown in the reference image.
+const BASE_PROMPT = `Use the reference image only for the overall crude flat cartoon style, character framing, awkward facial proportions, thick neck silhouette, thin black outlines, flat colors, and deadpan adult-animation mood.
 
-STYLE RULES - COPY THIS EXACTLY:
-- Flat 2D cartoon, hand-drawn look, thick black outlines
-- Simple shapes, no realistic details or gradients
-- Muted or bright solid colors, plain background
-- Small/beady eyes, simple mouths, minimal detail
-- Blocky bodies, thick necks, simple silhouettes
-- Looks like Adult Swim / Metalocalypse / crude YouTube animation
+Do NOT copy the exact character identity, hat, logo, face, outfit, body type, or background from the reference image.
 
-STRICT REQUIREMENTS:
-- Use ONLY the reference image for the art style and character design approach
-- The character should look like it was drawn by the same animator
-- Keep the same level of detail and simplicity
-- Do NOT add photorealistic elements, soft shading, or 3D effects
-- Maintain the same proportions and rendering style
+Generate a new original character each time.
 
+Randomize:
+skin tone, body type, neck width, face shape, mustache, hairstyle, eye color, facial hair, hat, shirt style, shirt color, outfit details, stains/accessories.
+
+Keep:
+flat 2D cartoon style, tiny dull eyes, thick neck, awkward centered face, deadpan expression, simple suburban background, no gradients, no realistic lighting.
 
 User scene:
-PLACEHOLDER_USER_PROMPT
+USER PROMPT HERE
 
 Output:
 square 1:1 profile picture, centered waist-up character, facing camera, simple background.`;
@@ -73,16 +67,20 @@ export async function POST(req: NextRequest) {
 
     // Always use original ref for now
     const ref = getRandomRefImage();
-    console.log('Using reference:', ref.name);
-
     const imageBuffer = readFileSync(ref.path);
+    console.log('Reference image:', ref.name, '- Size:', imageBuffer.length, 'bytes');
+
     const blob = new Blob([imageBuffer], { type: 'image/jpeg' });
+    console.log('Blob created, size:', blob.size, 'bytes');
+
+    const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
+    console.log('Final prompt (first 200 chars):', fullPrompt.substring(0, 200));
 
     const formData = new FormData();
     formData.append('model', 'gpt-image-1');
     formData.append('size', '1024x1024');
     formData.append('image', blob, ref.name);
-    formData.append('prompt', BASE_PROMPT.replace('PLACEHOLDER_USER_PROMPT', userPrompt.trim()));
+    formData.append('prompt', fullPrompt);
 
     const response = await fetch('https://api.openai.com/v1/images/edits', {
       method: 'POST',

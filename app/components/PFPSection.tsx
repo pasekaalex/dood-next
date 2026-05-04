@@ -109,11 +109,18 @@ export default function PFPSection({ onGenerated }: Props) {
         </button>
 
         {state === 'done' && imageUrl && (
-          <a href={imageUrl} download="dood-pfp.png"
-            className="px-5 py-3 rounded-xl font-bold text-sm"
-            style={{background: 'var(--secondary)', color: '#1A1A2E', boxShadow: '0 5px 0 #E6B800'}}>
-            ⬇️ Save
-          </a>
+          <div className="flex gap-3">
+            <a href={imageUrl} download="dood-pfp.png"
+              className="px-5 py-3 rounded-xl font-bold text-sm"
+              style={{background: 'var(--secondary)', color: '#1A1A2E', boxShadow: '0 5px 0 #E6B800'}}>
+              ⬇️ Save
+            </a>
+            <button onClick={() => { setState('idle'); setImageUrl(null); setPrompt(''); }}
+              className="px-5 py-3 rounded-xl font-bold text-sm"
+              style={{background: '#666', color: 'white', boxShadow: '0 5px 0 #333'}}>
+              🔄 Reset
+            </button>
+          </div>
         )}
 
         {timeLeft > 0 && state !== 'loading' && (
