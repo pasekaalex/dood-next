@@ -28,7 +28,9 @@ export default function Stats() {
         if (!p) return;
 
         const price = parseFloat(p.priceUsd);
-        const marketCap = parseFloat(p.marketCap || p.info?.marketCap || '0');
+        const mcRaw = parseFloat(p.marketCap || p.info?.marketCap || '0');
+        const liquidity = parseFloat(p.liquidity?.usd || '0');
+        const marketCap = mcRaw > 0 ? mcRaw : liquidity * 5;
 
         const newPrice = price < 0.0001 ? '$' + price.toExponential(2) : '$' + price.toFixed(6);
 
