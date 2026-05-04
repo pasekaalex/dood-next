@@ -142,7 +142,7 @@ export default function PFPSection() {
           )}
 
           <div className="px-4 py-2 text-center" style={{background: 'var(--secondary)'}}>
-            <p className="text-xs font-bold opacity-70">🟣 Solana-native • AI-powered • 1 generation every 3 minutes</p>
+            <p className="text-xs font-bold opacity-70">🟣 1 generation every 3 minutes</p>
           </div>
         </div>
 
