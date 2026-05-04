@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import PFPSection from './components/PFPSection';
 import Community from './components/Community';
 import Slideshow from './components/Slideshow';
+import MarketCap from './components/MarketCap';
 
 export default function Home() {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <Slideshow generatedImage={generatedImage} />
         <PFPSection onGenerated={setGeneratedImage} />
+        <MarketCap />
         <Community />
       </div>
     </main>

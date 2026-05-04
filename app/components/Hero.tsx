@@ -3,11 +3,9 @@
 import { useState, useEffect } from 'react';
 
 const CA = '4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
-const STATS_API = 'https://api.dexscreener.com/latest/dex/tokens/4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
-  const [marketCap, setMarketCap] = useState<string | null>(null);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(CA).then(() => {
@@ -16,72 +14,41 @@ export default function Hero() {
     });
   };
 
-  useEffect(() => {
-    const fetchMC = () => {
-      fetch(STATS_API).then(r => r.json()).then(data => {
-        const p = data?.pairs?.[0];
-        if (!p) return;
-        const mcRaw = parseFloat(p.marketCap || p.info?.marketCap || '0');
-        const liquidity = parseFloat(p.liquidity?.usd || '0');
-        const mc = mcRaw > 0 ? mcRaw : liquidity * 5;
-        const formatted = mc >= 1e9 ? '$' + (mc / 1e9).toFixed(2) + 'B' : mc >= 1e6 ? '$' + (mc / 1e6).toFixed(2) + 'M' : mc >= 1e3 ? '$' + (mc / 1e3).toFixed(1) + 'K' : '$' + mc.toFixed(2);
-        setMarketCap(formatted);
-      }).catch(() => {});
-    };
-    fetchMC();
-    const interval = setInterval(fetchMC, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <>
-      <div style={{height: '20px', background: 'transparent'}} />
+      <div style={{height: '10px', background: 'transparent'}} />
     <section className="flex flex-col items-center justify-center text-center px-4 pt-4 pb-2">
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-1">
+      <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-3">
 
-        <div className="inline-block px-4 py-3 rounded-xl" style={{background: 'var(--secondary)', boxShadow: '4px 4px 0 var(--primary)'}}>
-          <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: 'clamp(4rem, 16vw, 8rem)', lineHeight: 0.9, letterSpacing: '4px', color: '#1A1A2E', textShadow: '3px 3px 0 var(--primary)', display: 'inline-block'}}>
-            DOOD
-          </span>
-        </div>
-
-        <p className="text-base font-bold" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px', color: '#1A1A2E'}}>
-          Just a Dood Being a Dood.
-        </p>
+        <img src="/banner-doods.jpg" alt="Dood's" className="w-full max-w-xs rounded-xl" style={{borderRadius: '12px', border: '4px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)'}} />
 
         <div className="flex justify-center w-full">
           <a href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump"
             target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold"
             style={{background: 'var(--primary)', color: 'white', boxShadow: '0 5px 0 #b84a1e', minWidth: '180px', fontFamily: 'var(--font-bangers), cursive', fontSize: '1.2rem', letterSpacing: '1px'}}>
-            🚀 Buy DOOD
+            Buy DOOD
           </a>
         </div>
 
         <div className="flex flex-col items-center justify-center gap-2">
           <button
             onClick={handleCopy}
-            className="inline-flex rounded-xl bg-white px-3 py-2 cursor-pointer transition-all hover:scale-105"
-            style={{border: '2px solid var(--primary)'}}
+            className="flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 cursor-pointer transition-all hover:scale-105"
+            style={{border: '2px solid var(--primary)', width: '61%', maxWidth: '73%'}}
           >
             {copied ? (
               <span className="font-bold text-sm" style={{color: '#16A34A', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px'}}>✓ Copied!</span>
             ) : (
               <>
-                <span className="font-bold text-xs uppercase tracking-wider shrink-0" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px'}}>CA</span>
-                <code className="font-mono text-xs font-bold" style={{color: '#1A1A2E'}}>{CA}</code>
+                <span className="font-bold text-xs uppercase tracking-wider shrink-0 mr-2" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px'}}>CA</span>
+                <code className="font-mono text-xs font-bold" style={{color: '#1A1A2A'}}>{CA}</code>
               </>
             )}
           </button>
-
-          {marketCap && (
-            <div className="rounded-xl px-4 py-2" style={{background: 'var(--secondary)', border: '3px solid var(--primary)'}}>
-              <span className="font-bold text-lg" style={{fontFamily: 'var(--font-bangers), cursive', color: '#1A1A2E', letterSpacing: '1px'}}>{marketCap}</span>
-            </div>
-          )}
         </div>
-
       </div>
+
     </section>
     </>
   );

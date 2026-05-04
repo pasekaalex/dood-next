@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: 'gpt-image-1',
-        image: REF_IMAGE,
+        images: [REF_IMAGE],
         prompt: fullPrompt,
       }),
     });

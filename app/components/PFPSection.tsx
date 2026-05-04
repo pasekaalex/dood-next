@@ -71,65 +71,56 @@ export default function PFPSection({ onGenerated }: Props) {
 
   return (
     <section className="w-full flex flex-col items-center px-4 md:px-8 pb-2 flex-1 justify-end">
-      <div className="w-full max-w-sm mx-auto flex flex-col items-center">
+      <div className="w-full max-w-sm mx-auto flex flex-col items-center gap-4">
 
         <h2 className="text-center text-2xl md:text-3xl font-black mb-0 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: '#ffffff', textShadow: '3px 3px 0 var(--primary), -1px -1px 0 var(--primary), 1px -1px 0 var(--primary), -1px 1px 0 var(--primary)'}}>
-          DOOD PFP GENERATOR
+          CREATE UR DOOD
         </h2>
-        <p className="text-center text-sm opacity-0 mb-0 w-full" style={{color: '#ffffff', textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>.</p>
 
-        <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)'}}>
+        <textarea
+          value={prompt}
+          onChange={e => setPrompt(e.target.value)}
+          placeholder="Describe your DOOD... a dude grilling, a chill dude with shades, a cowboy at a cookout..."
+          rows={2}
+          className="w-full rounded-xl resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
+          style={{border: '3px solid var(--primary)', color: '#1A1A2E', background: '#ffffff', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center', padding: '16px', boxShadow: '4px 4px 0 var(--primary)'}}
+          onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
+        />
 
-          <div className="p-5 md:p-8 space-y-8 flex flex-col items-center" style={{background: 'white'}}>
-            <textarea
-              value={prompt}
-              onChange={e => setPrompt(e.target.value)}
-              placeholder="Describe your DOOD... a dude grilling, a chill dude with shades, a cowboy at a cookout..."
-              rows={2}
-              className="w-full max-w-sm rounded-xl resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
-              style={{border: '2px solid var(--surface)', color: '#1A1A2E', background: '#f5f5f5', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center', padding: '16px'}}
-              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
-            />
+        <button
+          onClick={handleGenerate}
+          disabled={!canGenerate}
+          className="rounded-xl font-bold cursor-pointer transition-all hover:brightness-105"
+          style={{
+            background: canGenerate ? 'var(--primary)' : '#999',
+            color: 'white',
+            fontSize: '1.1rem',
+            padding: '12px 40px',
+            boxShadow: canGenerate ? '0 5px 0 #b84a1e' : 'none',
+            opacity: state === 'loading' ? 0.7 : 1,
+            letterSpacing: '0.5px',
+          }}>
+          {state === 'loading' ? '⏳ Generating...' : 'Generate DOOD'}
+        </button>
 
-            <button
-              onClick={handleGenerate}
-              disabled={!canGenerate}
-              className="rounded-xl font-bold cursor-pointer transition-all hover:brightness-105"
-              style={{
-                background: canGenerate ? 'var(--primary)' : '#999',
-                color: 'white',
-                fontSize: '1.1rem',
-                padding: '10px 36px',
-                boxShadow: canGenerate ? '0 5px 0 #b84a1e' : 'none',
-                opacity: state === 'loading' ? 0.7 : 1,
-                letterSpacing: '0.5px',
-              }}>
-              {state === 'loading' ? '⏳ Generating...' : '🎨 Generate DOOD'}
-            </button>
+        {state === 'done' && imageUrl && (
+          <a href={imageUrl} download="dood-pfp.png"
+            className="px-5 py-3 rounded-xl font-bold text-sm"
+            style={{background: 'var(--secondary)', color: '#1A1A2E', boxShadow: '0 5px 0 #E6B800'}}>
+            ⬇️ Save
+          </a>
+        )}
 
-            {state === 'done' && imageUrl && (
-              <a href={imageUrl} download="dood-pfp.png"
-                className="px-5 py-3 rounded-xl font-bold text-sm"
-                style={{background: 'var(--secondary)', color: '#1A1A2E', boxShadow: '0 5px 0 #E6B800'}}>
-                ⬇️ Save
-              </a>
-            )}
+        {timeLeft > 0 && (
+          <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>
+            ⏳ Rate limited — try again in {formatTime(timeLeft)}
+          </p>
+        )}
 
-            {timeLeft > 0 && state !== 'done' && (
-              <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>
-                ⏳ Rate limited — try again in {formatTime(timeLeft)}
-              </p>
-            )}
+        {errorMsg && (
+          <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>⚠️ {errorMsg}</p>
+        )}
 
-            {errorMsg && (
-              <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>⚠️ {errorMsg}</p>
-            )}
-          </div>
-
-          <div className="px-4 py-2 text-center" style={{background: 'var(--secondary)'}}>
-            <p className="text-xs font-bold opacity-70">🟣 1 generation every 3 minutes</p>
-          </div>
-        </div>
 
       </div>
     </section>
