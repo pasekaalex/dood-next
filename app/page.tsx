@@ -18,8 +18,8 @@ export default function Home() {
       <Nav />
       <div className="w-full max-w-xl mx-auto flex flex-col pt-16">
         <Hero />
-        <Stats />
         <PFPSection />
+        <Stats />
         <Community />
         <Footer />
       </div>
