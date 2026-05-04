@@ -1,64 +1,23 @@
 'use client';
 
-import { useState } from 'react';
-
 export default function Community() {
-  const [copied, setCopied] = useState(false);
-  const CA = '4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(CA).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
-
   return (
-    <section className="w-full flex flex-col items-center px-4 pb-4">
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-3">
-
-        <h2 className="text-center text-2xl font-black" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px', color: 'white', textShadow: '2px 2px 0 var(--primary)'}}>
-          COMMUNITY
-        </h2>
-
-        <div className="flex flex-wrap justify-center gap-2 w-full">
-          <a href="https://x.com/doodpfp" target="_blank" rel="noopener noreferrer"
-            className="rounded-xl py-4 px-4 text-center no-underline transition-transform hover:scale-105"
-            style={{background: 'var(--primary)', boxShadow: '0 5px 0 #b84a1e', minWidth: '100px'}}>
-            <div className="font-bold text-base" style={{fontFamily: 'var(--font-bangers), cursive', color: 'white', letterSpacing: '1px'}}>𝕏 Official</div>
-          </a>
-          <a href="https://x.com/i/communities/1832939399241502938" target="_blank" rel="noopener noreferrer"
-            className="rounded-xl py-4 px-4 text-center no-underline transition-transform hover:scale-105"
-            style={{background: '#8B5CF6', boxShadow: '0 5px 0 #7C3AED', minWidth: '100px'}}>
-            <div className="font-bold text-base" style={{fontFamily: 'var(--font-bangers), cursive', color: 'white', letterSpacing: '1px'}}>👥 Community</div>
-          </a>
-          <a href="https://dexscreener.com/solana/fr2azeueszdfrhye41xldfxmuzjzlad74u88142tc7pf" target="_blank" rel="noopener noreferrer"
-            className="rounded-xl py-4 px-4 text-center no-underline transition-transform hover:scale-105"
-            style={{background: 'var(--secondary)', boxShadow: '0 5px 0 #E6B800', minWidth: '100px'}}>
-            <div className="font-bold text-base" style={{fontFamily: 'var(--font-bangers), cursive', color: '#1A1A2E', letterSpacing: '1px'}}>📊 Chart</div>
-          </a>
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full flex-wrap sm:flex-nowrap overflow-x-auto">
-          <div className="inline-flex rounded-xl bg-white px-3 py-3 overflow-x-auto" style={{border: '3px solid var(--primary)'}}>
-            <span className="font-bold text-sm uppercase tracking-wider shrink-0" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px'}}>CA</span>
-            <code className="font-mono text-xs sm:text-sm font-bold overflow-x-auto" style={{color: '#1A1A2E', maxWidth: '100%'}}>{CA}</code>
-          </div>
-          <button
-            onClick={handleCopy}
-            className="px-8 py-4 rounded-xl font-bold text-sm cursor-pointer transition-all hover:scale-105"
-            style={{
-              background: copied ? '#16A34A' : 'var(--primary)',
-              color: 'white',
-              boxShadow: copied ? '0 4px 0 #15803D' : '0 4px 0 #b84a1e',
-              minWidth: '120px',
-            }}
-          >
-            {copied ? '✓ Copied' : 'Copy'}
-          </button>
-        </div>
-
-      </div>
-    </section>
+    <div className="flex flex-wrap justify-center gap-2 w-full">
+      <a href="https://x.com/doodpfp" target="_blank" rel="noopener noreferrer"
+        className="rounded-xl py-4 px-4 text-center no-underline transition-transform hover:scale-105"
+        style={{background: 'var(--primary)', boxShadow: '0 5px 0 #b84a1e', minWidth: '100px'}}>
+        <div className="font-bold text-base" style={{fontFamily: 'var(--font-bangers), cursive', color: 'white', letterSpacing: '1px'}}>𝕏 Official</div>
+      </a>
+      <a href="https://x.com/i/communities/1832939399241502938" target="_blank" rel="noopener noreferrer"
+        className="rounded-xl py-4 px-4 text-center no-underline transition-transform hover:scale-105"
+        style={{background: '#8B5CF6', boxShadow: '0 5px 0 #7C3AED', minWidth: '100px'}}>
+        <div className="font-bold text-base" style={{fontFamily: 'var(--font-bangers), cursive', color: 'white', letterSpacing: '1px'}}>👥 Community</div>
+      </a>
+      <a href="https://dexscreener.com/solana/fr2azeueszdfrhye41xldfxmuzjzlad74u88142tc7pf" target="_blank" rel="noopener noreferrer"
+        className="rounded-xl py-4 px-4 text-center no-underline transition-transform hover:scale-105"
+        style={{background: 'var(--secondary)', boxShadow: '0 5px 0 #E6B800', minWidth: '100px'}}>
+        <div className="font-bold text-base" style={{fontFamily: 'var(--font-bangers), cursive', color: '#1A1A2E', letterSpacing: '1px'}}>📊 Chart</div>
+      </a>
+    </div>
   );
 }
