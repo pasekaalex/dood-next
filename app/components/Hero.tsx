@@ -7,7 +7,7 @@ export default function Hero() {
 
         <div className="inline-block px-6 py-4 rounded-xl" style={{background: 'var(--secondary)', boxShadow: '6px 6px 0 var(--primary)'}}>
           <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: 'clamp(4rem, 16vw, 8rem)', lineHeight: 0.9, letterSpacing: '4px', color: '#1A1A2E', textShadow: '3px 3px 0 var(--primary)', display: 'inline-block'}}>
-            $DOOD
+            DOOD
           </span>
         </div>
 
@@ -20,7 +20,7 @@ export default function Hero() {
             target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm"
             style={{background: 'var(--primary)', color: 'white', boxShadow: '0 5px 0 #b84a1e', minWidth: '160px'}}>
-            🚀 Buy $DOOD
+            🚀 Buy DOOD
           </a>
           <a href="https://dexscreener.com/solana/fr2azeueszdfrhye41xldfxmuzjzlad74u88142tc7pf"
             target="_blank" rel="noopener noreferrer"

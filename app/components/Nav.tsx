@@ -6,7 +6,7 @@ const links = [
   { href: 'https://x.com/doodpfp', label: '𝕏 Official' },
   { href: 'https://x.com/i/communities/1832939399241502938', label: '👥 Community' },
   { href: 'https://dexscreener.com/solana/fr2azeueszdfrhye41xldfxmuzjzlad74u88142tc7pf', label: '📊 Chart' },
-  { href: 'https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump', label: '🚀 Buy $DOOD' },
+  { href: 'https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump', label: '🚀 Buy DOOD' },
 ];
 
 export default function Nav() {
@@ -17,7 +17,7 @@ export default function Nav() {
       <div className="max-w-xl mx-auto flex items-center justify-between">
 
         <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: '1.8rem', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
-          $DOOD
+          DOOD
         </span>
 
         {/* Desktop: inline links */}
