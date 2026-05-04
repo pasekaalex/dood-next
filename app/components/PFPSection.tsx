@@ -86,8 +86,8 @@ export default function PFPSection() {
               onChange={e => setPrompt(e.target.value)}
               placeholder="a dude grilling at a backyard BBQ with cowboy hat and beer..."
               rows={6}
-              className="w-full max-w-sm rounded-xl p-3 text-sm resize-none outline-none font-semibold transition-colors"
-              style={{border: '2px solid var(--surface)', color: '#1A1A2E', background: '#f5f5f5'}}
+              className="w-full max-w-sm rounded-xl p-4 text-base resize-none outline-none font-semibold transition-colors leading-relaxed"
+              style={{border: '2px solid var(--surface)', color: '#1A1A2E', background: '#f5f5f5', fontSize: '1rem', lineHeight: '1.6'}}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
