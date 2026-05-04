@@ -91,7 +91,7 @@ export default function PFPSection() {
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
-            <div className="flex gap-2 w-full max-w-sm mx-auto py-3 justify-center">
+            <div className="flex gap-2 w-full max-w-sm mx-auto py-4 justify-center">
               <button
                 onClick={handleGenerate}
                 disabled={!canGenerate}
