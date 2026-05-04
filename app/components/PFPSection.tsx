@@ -80,7 +80,7 @@ export default function PFPSection() {
 
         <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)'}}>
 
-          <div className="p-6 md:p-8 space-y-3 flex flex-col items-center" style={{background: 'white'}}>
+          <div className="p-6 md:p-6 space-y-3 flex flex-col items-center" style={{background: 'white'}}>
             <textarea
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
@@ -91,7 +91,7 @@ export default function PFPSection() {
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
-            <div className="flex gap-2 w-full max-w-sm mx-auto py-1">
+            <div className="flex gap-2 w-full max-w-sm mx-auto py-3">
               <button
                 onClick={handleGenerate}
                 disabled={!canGenerate}
@@ -99,9 +99,9 @@ export default function PFPSection() {
                 style={{
                   background: canGenerate ? 'var(--primary)' : '#ccc',
                   color: 'white',
-                  fontSize: '1.4rem',
-                  padding: '12px 20px',
-                  boxShadow: canGenerate ? '0 5px 0 #b84a1e' : 'none',
+                  fontSize: '1rem',
+                  padding: '10px 16px',
+                  boxShadow: canGenerate ? '0 4px 0 #b84a1e' : 'none',
                   opacity: state === 'loading' ? 0.7 : 1,
                 }}>
                 {state === 'loading' ? '⏳ Generating...' : '🎨 Generate DOOD'}
