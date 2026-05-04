@@ -28,7 +28,7 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: linear-gradient(135deg, #FFF5E6 0%, #FFE4CC 30%, #FFD4A8 60%, #FFC887 100%);
+  background: url('/background-sky.jpg') center center / cover no-repeat fixed;
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
