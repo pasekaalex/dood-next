@@ -68,7 +68,7 @@ export default function Stats() {
               key: 'price',
               flash,
               pulse,
-              color: 'var(--secondary)',
+              color: 'var(--primary)',
             },
             {
               label: 'Market Cap',
@@ -76,7 +76,7 @@ export default function Stats() {
               key: 'mc',
               flash: false,
               pulse: false,
-              color: 'var(--accent)',
+              color: 'var(--primary)',
             },
             {
               label: 'Volume',
@@ -84,7 +84,7 @@ export default function Stats() {
               key: 'vol',
               flash: false,
               pulse: false,
-              color: '#8B5CF6',
+              color: 'var(--primary)',
             },
           ].map((s) => (
             <div
