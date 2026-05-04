@@ -95,12 +95,12 @@ export default function PFPSection() {
               <button
                 onClick={handleGenerate}
                 disabled={!canGenerate}
-                className="flex-1 py-3 rounded-xl font-bold text-sm cursor-pointer transition-all"
+                className="flex-1 py-2 rounded-xl font-bold text-sm cursor-pointer transition-all"
                 style={{
                   background: canGenerate ? 'var(--primary)' : '#ccc',
                   color: 'white',
-                  fontSize: '1.1rem',
-                  padding: '20px 24px',
+                  fontSize: '1.4rem',
+                  padding: '12px 20px',
                   boxShadow: canGenerate ? '0 5px 0 #b84a1e' : 'none',
                   opacity: state === 'loading' ? 0.7 : 1,
                 }}>
