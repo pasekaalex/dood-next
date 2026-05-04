@@ -39,22 +39,19 @@ export default function Hero() {
         </div>
 
         <div className="flex flex-col items-center justify-center gap-2 mt-4">
-          <div className="inline-flex rounded-xl bg-white px-3 py-2" style={{border: '2px solid var(--primary)'}}>
-            <span className="font-bold text-xs uppercase tracking-wider shrink-0" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px'}}>CA</span>
-            <code className="font-mono text-xs font-bold" style={{color: '#1A1A2E'}}>{CA}</code>
-          </div>
           <button
             onClick={handleCopy}
-            className="px-6 py-3 rounded-xl font-bold cursor-pointer transition-all hover:scale-105"
-            style={{
-              background: copied ? '#16A34A' : 'var(--primary)',
-              color: 'white',
-              boxShadow: copied ? '0 4px 0 #15803D' : '0 4px 0 #b84a1e',
-              fontSize: '1rem',
-              minWidth: '140px',
-            }}
+            className="inline-flex rounded-xl bg-white px-3 py-2 cursor-pointer transition-all hover:scale-105"
+            style={{border: '2px solid var(--primary)'}}
           >
-            {copied ? '✓ Copied!' : '📋 Copy CA'}
+            {copied ? (
+              <span className="font-bold text-sm" style={{color: '#16A34A', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px'}}>✓ Copied!</span>
+            ) : (
+              <>
+                <span className="font-bold text-xs uppercase tracking-wider shrink-0" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px'}}>CA</span>
+                <code className="font-mono text-xs font-bold" style={{color: '#1A1A2E'}}>{CA}</code>
+              </>
+            )}
           </button>
         </div>
 
