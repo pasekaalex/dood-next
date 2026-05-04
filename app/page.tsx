@@ -17,9 +17,10 @@ export default function Home() {
       <div className="w-full max-w-xl mx-auto flex flex-col flex-1">
         <Hero />
         <PFPSection />
+      </div>
+      <div className="w-full max-w-xl mx-auto flex flex-col gap-3 pb-4">
         <Community />
         <Stats />
-        <Footer />
       </div>
     </main>
   );
