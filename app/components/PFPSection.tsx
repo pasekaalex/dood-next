@@ -76,7 +76,7 @@ export default function PFPSection() {
         <h2 className="text-center text-2xl md:text-3xl font-black mb-0 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: '#ffffff', textShadow: '3px 3px 0 var(--primary), -1px -1px 0 var(--primary), 1px -1px 0 var(--primary), -1px 1px 0 var(--primary)'}}>
           DOOD PFP GENERATOR
         </h2>
-        <p className="text-center text-sm opacity-80 mb-6 font-bold w-full" style={{color: '#ffffff', textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>Describe your DOOD. AI generates it in seconds.</p>
+        <p className="text-center text-sm opacity-80 mb-3 font-bold w-full" style={{color: '#ffffff', textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>Describe your DOOD.</p>
 
         <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)'}}>
 
