@@ -16,7 +16,7 @@ function formatNum(n: number): string {
 }
 
 export default function Stats() {
-  const [stats, setStats] = useState<{price: string; marketCap: string; volume: string} | null>(null);
+  const [stats, setStats] = useState<{price: string; marketCap: string} | null>(null);
   const [flash, setFlash] = useState(false);
   const [pulse, setPulse] = useState(false);
   const prevPrice = useRef<string | null>(null);
@@ -26,23 +26,17 @@ export default function Stats() {
       fetch(API).then(r => r.json()).then(data => {
         const p = data?.pairs?.[0];
         if (!p) return;
-        const price = parseFloat(p.priceUsd);
-        const mc = price * parseFloat(p.info?.marketCap || '0') / price || 0;
-        const volume = parseFloat(p.volume?.h24 || '0');
-        const liquidity = parseFloat(p.liquidity?.usd || '0');
 
-        // Estimate market cap from liquidity if needed (rough proxy for low-cap memcoins)
-        const marketCap = liquidity > 0 && mc === 0 ? liquidity * 10 : mc;
+        const price = parseFloat(p.priceUsd);
+        const marketCap = parseFloat(p.marketCap || p.info?.marketCap || '0');
 
         const newPrice = price < 0.0001 ? '$' + price.toExponential(2) : '$' + price.toFixed(6);
 
         setStats({
           price: newPrice,
           marketCap: formatNum(marketCap),
-          volume: formatNum(volume),
         });
 
-        // Flash animation on price change
         if (prevPrice.current && prevPrice.current !== newPrice) {
           setFlash(true);
           setPulse(true);
@@ -53,14 +47,14 @@ export default function Stats() {
     };
 
     fetchStats();
-    const interval = setInterval(fetchStats, 10000);
+    const interval = setInterval(fetchStats, 5000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="w-full flex flex-col items-center px-4 pt-2 pb-6">
       <div className="w-full max-w-xl">
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 gap-2">
           {[
             {
               label: 'Price',
@@ -68,7 +62,6 @@ export default function Stats() {
               key: 'price',
               flash,
               pulse,
-              color: 'var(--primary)',
             },
             {
               label: 'Market Cap',
@@ -76,15 +69,6 @@ export default function Stats() {
               key: 'mc',
               flash: false,
               pulse: false,
-              color: 'var(--primary)',
-            },
-            {
-              label: 'Volume',
-              value: stats?.volume ?? <Spinner />,
-              key: 'vol',
-              flash: false,
-              pulse: false,
-              color: 'var(--primary)',
             },
           ].map((s) => (
             <div
