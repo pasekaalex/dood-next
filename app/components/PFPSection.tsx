@@ -70,17 +70,17 @@ export default function PFPSection() {
   const canGenerate = state !== 'loading' && prompt.trim().length > 0 && timeLeft === 0;
 
   return (
-    <section className="w-full flex flex-col items-center px-4 md:px-8 pb-4">
+    <section className="w-full flex flex-col items-center px-4 md:px-8 pb-2">
       <div className="w-full max-w-sm mx-auto flex flex-col items-center">
 
-        <h2 className="text-center text-3xl md:text-4xl font-black mb-1 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: '#ffffff', textShadow: '3px 3px 0 var(--primary), -1px -1px 0 var(--primary), 1px -1px 0 var(--primary), -1px 1px 0 var(--primary)'}}>
+        <h2 className="text-center text-2xl md:text-3xl font-black mb-0 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: '#ffffff', textShadow: '3px 3px 0 var(--primary), -1px -1px 0 var(--primary), 1px -1px 0 var(--primary), -1px 1px 0 var(--primary)'}}>
           DOOD PFP GENERATOR
         </h2>
         <p className="text-center text-sm opacity-80 mb-6 font-bold w-full" style={{color: '#ffffff', textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>Describe your DOOD. AI generates it in seconds.</p>
 
         <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)'}}>
 
-          <div className="p-8 md:p-10 space-y-4 flex flex-col items-center" style={{background: 'white'}}>
+          <div className="p-6 md:p-8 space-y-3 flex flex-col items-center" style={{background: 'white'}}>
             <textarea
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
@@ -91,7 +91,7 @@ export default function PFPSection() {
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
-            <div className="flex gap-3 w-full max-w-sm mx-auto py-2">
+            <div className="flex gap-2 w-full max-w-sm mx-auto py-1">
               <button
                 onClick={handleGenerate}
                 disabled={!canGenerate}

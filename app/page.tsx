@@ -7,7 +7,7 @@ import ContractAddress from './components/ContractAddress';
 export default function Home() {
   return (
     <main className="flex flex-col items-center min-h-screen">
-      <div className="w-full max-w-xl mx-auto flex flex-col gap-4 pb-4">
+      <div className="w-full max-w-xl mx-auto flex flex-col gap-2 pb-2">
         <Hero />
         {/* Slideshow placeholder - coming soon */}
         <PFPSection />
