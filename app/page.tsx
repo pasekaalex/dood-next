@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center min-h-screen">
-      <div className="w-full max-w-xl mx-auto flex flex-col gap-3" style={{paddingBottom: '25px'}}>
+      <div className="w-full max-w-xl mx-auto flex flex-col gap-1" style={{paddingBottom: '15px'}}>
         <Hero />
         <Slideshow generatedImage={generatedImage} />
         <PFPSection onGenerated={setGeneratedImage} />

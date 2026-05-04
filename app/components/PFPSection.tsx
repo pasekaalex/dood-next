@@ -76,7 +76,7 @@ export default function PFPSection({ onGenerated }: Props) {
 
   return (
     <section className="w-full flex flex-col items-center px-4 md:px-8 pb-2 flex-1 justify-end">
-      <div className="w-full max-w-sm mx-auto flex flex-col items-center gap-4">
+      <div className="w-full max-w-sm mx-auto flex flex-col items-center gap-2">
 
         <h2 className="text-center text-2xl md:text-3xl font-black mb-0 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: '#ffffff', textShadow: '3px 3px 0 var(--primary), -1px -1px 0 var(--primary), 1px -1px 0 var(--primary), -1px 1px 0 var(--primary)'}}>
           CREATE UR DOOD
@@ -88,7 +88,7 @@ export default function PFPSection({ onGenerated }: Props) {
           placeholder="Describe your DOOD... a dude grilling, a chill dude with shades, a cowboy at a cookout..."
           rows={2}
           className="w-full rounded-xl resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
-          style={{border: '3px solid var(--primary)', color: '#1A1A2E', background: '#ffffff', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center', padding: '16px', boxShadow: '4px 4px 0 var(--primary)'}}
+          style={{border: '3px solid var(--primary)', color: '#1A1A2E', background: '#ffffff', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center', padding: '12px', boxShadow: '4px 4px 0 var(--primary)'}}
           onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
         />
 
@@ -100,7 +100,7 @@ export default function PFPSection({ onGenerated }: Props) {
             background: canGenerate ? 'var(--primary)' : '#999',
             color: 'white',
             fontSize: '1.1rem',
-            padding: '12px 40px',
+            padding: '10px 40px',
             boxShadow: canGenerate ? '0 5px 0 #b84a1e' : 'none',
             opacity: state === 'loading' ? 0.7 : 1,
             letterSpacing: '0.5px',

@@ -31,10 +31,10 @@ export default function Slideshow({ generatedImage }: SlideshowProps) {
 
   if (generatedImage) {
     return (
-      <div className="w-full flex justify-center px-4">
+      <div className="w-full flex justify-center px-4 py-1">
         <div
           className="relative w-full max-w-[61%] md:max-w-[73%]"
-          style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '16px', border: '4px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)' }}
+          style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '12px', border: '3px solid var(--primary)', boxShadow: '3px 3px 0 var(--primary)' }}
         >
           <img
             src={generatedImage}
@@ -47,10 +47,10 @@ export default function Slideshow({ generatedImage }: SlideshowProps) {
   }
 
   return (
-    <div className="w-full flex justify-center px-4">
+    <div className="w-full flex justify-center px-4 py-1">
       <div
         className="relative w-full max-w-[61%] md:max-w-[73%]"
-        style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '16px', border: '4px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)' }}
+        style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '12px', border: '3px solid var(--primary)', boxShadow: '3px 3px 0 var(--primary)' }}
       >
         {SLIDES.map((src, i) => (
           <img

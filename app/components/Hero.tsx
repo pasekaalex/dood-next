@@ -16,8 +16,8 @@ export default function Hero() {
 
   return (
     <>
-      <div style={{height: '10px', background: 'transparent'}} />
-      <section className="flex flex-col items-center justify-center text-center px-4 pt-2 pb-1">
+      <div style={{height: '5px', background: 'transparent'}} />
+      <section className="flex flex-col items-center justify-center text-center px-4 py-1">
         <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-3">
           <img
             src="/logo.png"
