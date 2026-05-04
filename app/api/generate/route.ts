@@ -18,21 +18,33 @@ Keep:
 flat 2D cartoon style, tiny dull eyes, thick neck, awkward centered face, deadpan expression, simple suburban background, no gradients, no realistic lighting.
 
 User scene:
-`;
+PLACEHOLDER_USER_PROMPT
+
+Output:
+square 1:1 profile picture, centered waist-up character, facing camera, simple background.`;
 
 function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';
 }
 
-function getRefImageBase64(): string {
-  try {
-    const imagePath = join(process.cwd(), 'public', 'pfp-refs', 'dood-ref-1.jpg');
-    const imageBuffer = readFileSync(imagePath);
-    const base64 = imageBuffer.toString('base64');
-    return `data:image/jpeg;base64,${base64}`;
-  } catch {
-    return '';
-  }
+function getRandomRefImage(): { path: string; name: string } {
+  const slideshowRefs = [
+    'slide-1.jpg', 'slide-2.jpg', 'slide-3.jpg',
+    'slide-4.jpg', 'slide-5.jpg', 'slide-6.jpg',
+    'slide-7.jpg', 'slide-8.jpg', 'slide-9.jpg'
+  ];
+
+  // 50% chance original ref, 50% chance slideshow
+  const useSlideshow = Math.random() < 0.5;
+  const slides = slideshowRefs.sort(() => Math.random() - 0.5);
+  const slide = slides[0];
+
+  return {
+    path: useSlideshow
+      ? join(process.cwd(), 'public', 'slideshow', slide)
+      : join(process.cwd(), 'public', 'pfp-refs', 'dood-ref-1.jpg'),
+    name: useSlideshow ? slide : 'dood-ref-1.jpg'
+  };
 }
 
 export async function POST(req: NextRequest) {
@@ -57,7 +69,7 @@ export async function POST(req: NextRequest) {
   const openaiApiKey = process.env.OPENAI_API_KEY;
   if (!openaiApiKey) {
     return NextResponse.json(
-      { error: 'OPENAI_API_KEY not set. Add it in Vercel dashboard → Settings → Environment Variables.' },
+      { error: 'OPENAI_API_KEY not set. Add it in Vercel dashboard.' },
       { status: 500 }
     );
   }
@@ -65,35 +77,41 @@ export async function POST(req: NextRequest) {
   try {
     rateLimitMap.set(ip, Date.now());
 
-    const refImage = getRefImageBase64();
-    if (!refImage) {
-      throw new Error('Reference image not found');
-    }
+    // Pick random reference image
+    const ref = getRandomRefImage();
+    console.log('Using reference:', ref.name);
 
-    const fullPrompt = `${BASE_PROMPT}${userPrompt.trim()}`;
+    const imageBuffer = readFileSync(ref.path);
+    const blob = new Blob([imageBuffer], { type: 'image/jpeg' });
+
+    const formData = new FormData();
+    formData.append('model', 'gpt-image-1');
+    formData.append('size', '1024x1024');
+    formData.append('image', blob, ref.name);
+    formData.append('prompt', BASE_PROMPT.replace('PLACEHOLDER_USER_PROMPT', userPrompt.trim()));
 
     const response = await fetch('https://api.openai.com/v1/images/edits', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${openaiApiKey}`,
-        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        model: 'gpt-image-1',
-        images: [{b64_json: refImage.split(',')[1]}],
-        prompt: fullPrompt,
-      }),
+      body: formData,
     });
 
     if (!response.ok) {
       const err = await response.text();
+      console.log('OpenAI error response:', err);
       throw new Error(`OpenAI API error: ${err}`);
     }
 
     const data = await response.json();
-    const imageUrl = data.data?.[0]?.url;
+    const b64 = data.data?.[0]?.b64_json;
+    const imageUrl = data.data?.[0]?.url || (b64 ? `data:image/png;base64,${b64}` : null);
 
-    if (!imageUrl) throw new Error('No image URL in response');
+    if (!imageUrl) {
+      console.log('OpenAI response:', JSON.stringify(data));
+      throw new Error('No image URL or base64 in response');
+    }
 
     return NextResponse.json({ imageUrl });
   } catch (e) {

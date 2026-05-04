@@ -53,7 +53,12 @@ export default function PFPSection({ onGenerated }: Props) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: prompt.trim() }),
       });
-      if (!res.ok) throw new Error('Generation failed');
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || `Server error: ${res.status}`);
+      }
+
       const data = await res.json();
       setImageUrl(data.imageUrl);
       setState('done');
@@ -111,7 +116,7 @@ export default function PFPSection({ onGenerated }: Props) {
           </a>
         )}
 
-        {timeLeft > 0 && (
+        {timeLeft > 0 && state !== 'loading' && (
           <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>
             ⏳ Rate limited — try again in {formatTime(timeLeft)}
           </p>
