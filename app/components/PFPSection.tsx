@@ -80,13 +80,13 @@ export default function PFPSection() {
 
         <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)', boxShadow: '8px 8px 0 var(--secondary)'}}>
 
-          <div className="p-5 md:p-8 space-y-4 flex flex-col items-center" style={{background: 'white'}}>
+          <div className="p-6 md:p-10 space-y-4 flex flex-col items-center" style={{background: 'white'}}>
             <textarea
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
               placeholder="a dude grilling at a backyard BBQ with cowboy hat and beer..."
               rows={6}
-              className="w-full max-w-sm rounded-xl p-4 text-base resize-none outline-none font-semibold transition-colors leading-relaxed"
+              className="w-full max-w-sm rounded-xl p-5 text-base resize-none outline-none font-semibold transition-colors leading-relaxed"
               style={{border: '2px solid var(--surface)', color: '#1A1A2E', background: '#f5f5f5', fontSize: '1rem', lineHeight: '1.6'}}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
