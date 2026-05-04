@@ -73,12 +73,12 @@ export default function PFPSection() {
     <section className="w-full flex flex-col items-center px-4 md:px-8 pb-10">
       <div className="w-full max-w-sm mx-auto flex flex-col items-center">
 
-        <h2 className="text-center text-3xl md:text-4xl font-black mb-1 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
+        <h2 className="text-center text-3xl md:text-4xl font-black mb-1 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: '#ffffff', textShadow: '3px 3px 0 var(--primary), -1px -1px 0 var(--primary), 1px -1px 0 var(--primary), -1px 1px 0 var(--primary)'}}>
           DOOD PFP GENERATOR
         </h2>
-        <p className="text-center text-sm opacity-50 mb-4 font-semibold w-full">Describe your DOOD. AI generates it in seconds.</p>
+        <p className="text-center text-sm opacity-80 mb-4 font-bold w-full" style={{color: '#ffffff', textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>Describe your DOOD. AI generates it in seconds.</p>
 
-        <div className="rounded-2xl overflow-hidden w-full" style={{border: '4px solid var(--primary)', boxShadow: '6px 6px 0 var(--primary)'}}>
+        <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)', boxShadow: '8px 8px 0 var(--secondary)'}}>
 
           <div className="p-4 md:p-6 space-y-3 flex flex-col items-center" style={{background: 'white'}}>
             <textarea
