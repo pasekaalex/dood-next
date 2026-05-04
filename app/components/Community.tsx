@@ -14,7 +14,7 @@ export default function Community() {
   };
 
   return (
-    <section className="w-full flex flex-col items-center px-4 pb-8">
+    <section className="w-full flex flex-col items-center px-4 pb-4">
       <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-3">
 
         <h2 className="text-center text-2xl font-black" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>

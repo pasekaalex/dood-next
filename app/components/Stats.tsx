@@ -58,7 +58,7 @@ export default function Stats() {
   }, []);
 
   return (
-    <section className="w-full flex flex-col items-center px-4 pb-6">
+    <section className="w-full flex flex-col items-center px-4 pb-4">
       <div className="w-full max-w-xl">
         <div className="grid grid-cols-3 gap-2">
           {[
