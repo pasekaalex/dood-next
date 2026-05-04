@@ -45,16 +45,17 @@ export default function Community() {
         </div>
 
         {/* Contract Address */}
-        <div className="rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-3 bg-white w-full" style={{border: '3px solid var(--primary)'}}>
-          <span className="font-bold text-sm uppercase tracking-wider" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px'}}>CA</span>
-          <code className="font-mono text-sm sm:text-base flex-1 break-all font-bold" style={{color: '#1A1A2E'}}>{CA}</code>
+        <div className="rounded-2xl overflow-hidden flex flex-col sm:flex-row items-center gap-2 w-full" style={{border: '3px solid var(--primary)'}}>
+          <div className="flex-1 flex items-center gap-3 bg-white rounded-none px-4 py-3 w-full sm:w-auto">
+            <span className="font-bold text-sm uppercase tracking-wider shrink-0" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px'}}>CA</span>
+            <code className="font-mono text-sm sm:text-base break-all font-bold" style={{color: '#1A1A2E'}}>{CA}</code>
+          </div>
           <button
             onClick={handleCopy}
-            className="px-5 py-3 rounded-xl font-bold text-sm cursor-pointer transition-all hover:scale-105"
+            className="px-6 py-3 font-bold text-sm cursor-pointer transition-all hover:scale-105 shrink-0 w-full sm:w-auto rounded-none"
             style={{
               background: copied ? '#16A34A' : 'var(--primary)',
               color: 'white',
-              boxShadow: copied ? '0 4px 0 #15803D' : '0 4px 0 #b84a1e',
             }}
           >
             {copied ? '✓ Copied' : 'Copy'}
