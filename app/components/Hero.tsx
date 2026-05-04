@@ -35,10 +35,10 @@ export default function Hero() {
           <button
             onClick={handleCopy}
             className="flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 cursor-pointer transition-all hover:scale-105"
-            style={{border: '2px solid var(--primary)', width: '61%', maxWidth: '73%'}}
+            style={{border: '2px solid var(--primary)', minWidth: '380px', width: '380px'}}
           >
             {copied ? (
-              <span className="font-bold text-sm" style={{color: '#16A34A', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px'}}>✓ Copied!</span>
+              <span className="font-bold text-sm" style={{color: '#16A34A', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px', display: 'inline-block', minWidth: '200px', textAlign: 'center'}}>✓ Copied!</span>
             ) : (
               <>
                 <span className="font-bold text-xs uppercase tracking-wider shrink-0 mr-2" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px'}}>CA</span>
