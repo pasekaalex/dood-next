@@ -74,19 +74,19 @@ export async function POST(req: NextRequest) {
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
     console.log('Final prompt (first 200 chars):', fullPrompt.substring(0, 200));
 
-    const formData = new FormData();
-    formData.append('model', 'gpt-image-1');
-    formData.append('size', '1024x1024');
-    formData.append('image', `data:image/jpeg;base64,${base64Image}`);
-    formData.append('prompt', fullPrompt);
-
-    const response = await fetch('https://api.openai.com/v1/images/edits', {
+    const response = await fetch('https://api.openai.com/v1/images/generations', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${openaiApiKey}`,
+        'Content-Type': 'application/json',
       },
-      body: formData,
-    });
+      body: JSON.stringify({
+        model: 'gpt-image-1',
+        size: '1024x1024',
+        n: 1,
+        image: `data:image/jpeg;base64,${base64Image}`,
+        prompt: fullPrompt,
+      }),
 
     if (!response.ok) {
       const err = await response.text();
