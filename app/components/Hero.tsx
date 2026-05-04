@@ -2,7 +2,7 @@
 
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center justify-center text-center px-4 pt-6 pb-4 min-h-[60vh]">
+    <section className="flex flex-col items-center justify-center text-center px-4 pt-16 pb-4 min-h-[50vh]">
       <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-4">
 
         <div className="inline-block px-6 py-4 rounded-xl" style={{background: 'var(--secondary)', boxShadow: '6px 6px 0 var(--primary)'}}>
