@@ -2,7 +2,6 @@ import Hero from './components/Hero';
 import Stats from './components/Stats';
 import PFPSection from './components/PFPSection';
 import Community from './components/Community';
-import ContractAddress from './components/ContractAddress';
 
 export default function Home() {
   return (
@@ -11,7 +10,6 @@ export default function Home() {
         <Hero />
         {/* Slideshow placeholder - coming soon */}
         <PFPSection />
-        <ContractAddress />
         <Community />
         <Stats />
       </div>
