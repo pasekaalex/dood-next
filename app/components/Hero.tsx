@@ -2,7 +2,7 @@
 
 export default function Hero() {
   return (
-    <section className="flex flex-col items-center justify-center text-center px-4 pt-12 pb-6 min-h-[70vh]">
+    <section className="flex flex-col items-center justify-center text-center px-4 pt-6 pb-4 min-h-[60vh]">
       <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-4">
 
         <div className="inline-block px-6 py-4 rounded-xl" style={{background: 'var(--secondary)', boxShadow: '6px 6px 0 var(--primary)'}}>
@@ -27,19 +27,6 @@ export default function Hero() {
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm"
             style={{background: 'white', color: '#1A1A2E', boxShadow: '0 5px 0 #ccc', border: '2px solid #1A1A2E', minWidth: '160px'}}>
             📊 Chart
-          </a>
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-          <a href="https://x.com/doodpfp" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold"
-            style={{background: '#1DA1F2', color: 'white', boxShadow: '0 4px 0 #0D8BD9', minWidth: '130px'}}>
-            𝕏 @doodpfp
-          </a>
-          <a href="https://x.com/i/communities/1832939399241502938" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold"
-            style={{background: '#8B5CF6', color: 'white', boxShadow: '0 4px 0 #7C3AED', minWidth: '130px'}}>
-            👥 X Community
           </a>
         </div>
 

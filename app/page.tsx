@@ -1,3 +1,4 @@
+import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import PFPSection from './components/PFPSection';
@@ -14,7 +15,8 @@ function Footer() {
 export default function Home() {
   return (
     <main className="flex flex-col items-center min-h-screen">
-      <div className="w-full max-w-xl mx-auto flex flex-col">
+      <Nav />
+      <div className="w-full max-w-xl mx-auto flex flex-col pt-16">
         <Hero />
         <Stats />
         <PFPSection />
