@@ -70,7 +70,7 @@ export default function PFPSection() {
   const canGenerate = state !== 'loading' && prompt.trim().length > 0 && timeLeft === 0;
 
   return (
-    <section className="w-full flex flex-col items-center px-4 md:px-8 pb-6">
+    <section className="w-full flex flex-col items-center px-4 md:px-8 pb-4">
       <div className="w-full max-w-sm mx-auto flex flex-col items-center">
 
         <h2 className="text-center text-3xl md:text-4xl font-black mb-1 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: '#ffffff', textShadow: '3px 3px 0 var(--primary), -1px -1px 0 var(--primary), 1px -1px 0 var(--primary), -1px 1px 0 var(--primary)'}}>
