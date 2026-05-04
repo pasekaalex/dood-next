@@ -14,15 +14,37 @@ const SLIDES = [
   '/slideshow/slide-9.jpg',
 ];
 
-export default function Slideshow() {
+interface SlideshowProps {
+  generatedImage: string | null;
+}
+
+export default function Slideshow({ generatedImage }: SlideshowProps) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    if (generatedImage) return;
     const timer = setInterval(() => {
       setIndex(i => (i + 1) % SLIDES.length);
     }, 1500);
     return () => clearInterval(timer);
-  }, []);
+  }, [generatedImage]);
+
+  if (generatedImage) {
+    return (
+      <div className="w-full flex justify-center px-4">
+        <div
+          className="relative w-full max-w-[75%] md:max-w-[90%]"
+          style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '16px', border: '4px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)' }}
+        >
+          <img
+            src={generatedImage}
+            alt="Your DOOD"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex justify-center px-4">

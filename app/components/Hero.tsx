@@ -34,7 +34,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center text-center px-4 pt-8 pb-2 min-h-[20vh]">
+    <>
+      <div style={{height: '20px', background: 'transparent'}} />
+    <section className="flex flex-col items-center justify-center text-center px-4 pt-4 pb-2">
       <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-1">
 
         <div className="inline-block px-4 py-3 rounded-xl" style={{background: 'var(--secondary)', boxShadow: '4px 4px 0 var(--primary)'}}>
@@ -56,7 +58,7 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="flex flex-col items-center justify-center gap-2 mt-8">
+        <div className="flex flex-col items-center justify-center gap-2">
           <button
             onClick={handleCopy}
             className="inline-flex rounded-xl bg-white px-3 py-2 cursor-pointer transition-all hover:scale-105"
@@ -81,5 +83,6 @@ export default function Hero() {
 
       </div>
     </section>
+    </>
   );
 }

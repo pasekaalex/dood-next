@@ -7,7 +7,11 @@ const STORAGE_KEY = 'dood_last_gen';
 
 type State = 'idle' | 'loading' | 'done' | 'error';
 
-export default function PFPSection() {
+interface Props {
+  onGenerated: (url: string) => void;
+}
+
+export default function PFPSection({ onGenerated }: Props) {
   const [prompt, setPrompt] = useState('');
   const [state, setState] = useState<State>('idle');
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -53,6 +57,7 @@ export default function PFPSection() {
       const data = await res.json();
       setImageUrl(data.imageUrl);
       setState('done');
+      onGenerated(data.imageUrl);
     } catch (e: unknown) {
       setErrorMsg(e instanceof Error ? e.message : 'Something went wrong. Try again.');
       setState('error');
@@ -71,7 +76,7 @@ export default function PFPSection() {
         <h2 className="text-center text-2xl md:text-3xl font-black mb-0 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: '#ffffff', textShadow: '3px 3px 0 var(--primary), -1px -1px 0 var(--primary), 1px -1px 0 var(--primary), -1px 1px 0 var(--primary)'}}>
           DOOD PFP GENERATOR
         </h2>
-        <p className="text-center text-sm opacity-80 mb-3 font-bold w-full" style={{color: '#ffffff', textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>Describe your DOOD.</p>
+        <p className="text-center text-sm opacity-0 mb-0 w-full" style={{color: '#ffffff', textShadow: '1px 1px 2px rgba(0,0,0,0.5)'}}>.</p>
 
         <div className="rounded-2xl overflow-hidden w-full" style={{border: '6px solid var(--primary)'}}>
 
@@ -120,21 +125,6 @@ export default function PFPSection() {
               <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>⚠️ {errorMsg}</p>
             )}
           </div>
-
-          {(state === 'done' || state === 'loading') && (
-            <div className="p-4 md:p-6 flex justify-center" style={{background: 'var(--surface)'}}>
-              {state === 'loading' ? (
-                <div className="flex items-center justify-center h-64 rounded-xl w-full max-w-md" style={{background: 'rgba(255,255,255,0.5)'}}>
-                  <div className="text-center">
-                    <div className="text-4xl mb-2 animate-pulse">🎨</div>
-                    <p className="text-sm font-bold opacity-60">Creating your DOOD...</p>
-                  </div>
-                </div>
-              ) : imageUrl ? (
-                <img src={imageUrl} alt="Generated DOOD" className="rounded-xl" style={{aspectRatio: '1/1', maxWidth: '256px', width: '100%', objectFit: 'cover'}} />
-              ) : null}
-            </div>
-          )}
 
           <div className="px-4 py-2 text-center" style={{background: 'var(--secondary)'}}>
             <p className="text-xs font-bold opacity-70">🟣 1 generation every 3 minutes</p>
