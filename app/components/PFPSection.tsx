@@ -52,7 +52,7 @@ export default function PFPSection() {
       const res = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: prompt.trim(), images: REF_IMAGES }),
+        body: JSON.stringify({ prompt: prompt.trim() }),
       });
       if (!res.ok) throw new Error('Generation failed');
       const data = await res.json();
