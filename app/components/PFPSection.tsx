@@ -100,7 +100,7 @@ export default function PFPSection() {
                   background: canGenerate ? 'var(--primary)' : '#ccc',
                   color: 'white',
                   fontSize: '1.1rem',
-                  padding: '16px 24px',
+                  padding: '20px 24px',
                   boxShadow: canGenerate ? '0 5px 0 #b84a1e' : 'none',
                   opacity: state === 'loading' ? 0.7 : 1,
                 }}>
