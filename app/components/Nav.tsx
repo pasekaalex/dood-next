@@ -21,10 +21,10 @@ export default function Nav() {
         </span>
 
         {/* Desktop: inline links */}
-        <div className="hidden sm:flex gap-2 items-center">
+        <div className="hidden sm:flex gap-2 items-center justify-center">
           {links.map((l) => (
             <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-              className="px-4 py-2 rounded-xl text-sm font-bold no-underline"
+              className="px-5 py-2.5 rounded-xl text-sm font-bold no-underline"
               style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
               {l.label}
             </a>

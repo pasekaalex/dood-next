@@ -27,7 +27,7 @@ export default function Stats() {
   }, []);
 
   return (
-    <section className="flex flex-col items-center px-4 pb-6">
+    <section className="w-full flex flex-col items-center px-4 pb-6">
       <div className="w-full max-w-xl">
         <div className="grid grid-cols-4 gap-2">
           {[
@@ -36,7 +36,7 @@ export default function Stats() {
             { label: 'Volume', value: d?.volume ?? <Spinner /> },
             { label: 'Liq', value: d?.liquidity ?? <Spinner /> },
           ].map((s, i) => (
-            <div key={i} className="rounded-xl p-3 text-center bg-white" style={{border: '2px solid var(--primary)', boxShadow: '3px 3px 0 var(--primary)'}}>
+            <div key={i} className="rounded-xl p-4 text-center bg-white" style={{border: '2px solid var(--primary)', boxShadow: '3px 3px 0 var(--primary)'}}>
               <div className="font-bold text-sm mb-0.5" style={{fontFamily: 'var(--font-bangers), cursive', color: s.green === false ? '#DC2626' : s.green === true ? '#16A34A' : 'var(--primary)'}}>{s.value}</div>
               <div className="text-xs font-bold uppercase opacity-40">{s.label}</div>
             </div>

@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center min-h-screen">
       <Nav />
-      <div className="w-full max-w-xl mx-auto flex flex-col pt-16 gap-0">
+      <div className="w-full max-w-xl mx-auto flex flex-col pt-16">
         <Hero />
         <PFPSection />
         <Stats />
