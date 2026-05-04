@@ -6,14 +6,14 @@ export default function Community() {
   };
 
   return (
-    <section className="w-full flex flex-col items-center px-6 pb-8">
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center">
+    <section className="w-full flex flex-col items-center px-4 pb-8">
+      <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-3">
 
-        <h2 className="text-center text-2xl font-black mb-3 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px', color: '#1A1A2E'}}>
+        <h2 className="text-center text-2xl font-black" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px', color: '#1A1A2E'}}>
           COMMUNITY
         </h2>
 
-        <div className="grid grid-cols-3 gap-2 mb-2 w-full">
+        <div className="grid grid-cols-3 gap-2 w-full">
           {[
             { href: 'https://x.com/doodpfp', label: '𝕏', color: '#1DA1F2', shadow: '#0D8BD9' },
             { href: 'https://x.com/i/communities/1832939399241502938', label: 'Community', color: '#8B5CF6', shadow: '#7C3AED' },
