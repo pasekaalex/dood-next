@@ -14,44 +14,47 @@ export default function Nav() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-3" style={{background: 'rgba(255,245,230,0.97)', backdropFilter: 'blur(8px)', borderBottom: '2px solid rgba(255,107,53,0.15)'}}>
-      <div className="w-full max-w-xl mx-auto flex items-center justify-between">
+      <div className="max-w-xl mx-auto">
 
-        <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: '1.8rem', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
-          DOOD
-        </span>
+        <div className="flex items-center justify-between">
 
-        {/* Desktop: inline links */}
-        <div className="hidden sm:flex gap-2 items-center justify-center">
-          {links.map((l) => (
-            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-              className="px-5 py-2.5 rounded-xl text-sm font-bold no-underline"
-              style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
-              {l.label}
-            </a>
-          ))}
+          <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: '1.8rem', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
+            DOOD
+          </span>
+
+          {/* Desktop: inline links */}
+          <div className="hidden sm:flex gap-2 items-center">
+            {links.map((l) => (
+              <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-xl text-sm font-bold no-underline"
+                style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
+                {l.label}
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile: hamburger */}
+          <button onClick={() => setOpen(!open)}
+            className="sm:hidden px-5 py-3 rounded-xl font-bold text-base cursor-pointer"
+            style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
+            {open ? '✕' : '☰'}
+          </button>
         </div>
 
-        {/* Mobile: hamburger */}
-        <button onClick={() => setOpen(!open)}
-          className="sm:hidden px-5 py-3 rounded-xl font-bold text-base cursor-pointer"
-          style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
-          {open ? '✕' : '☰'}
-        </button>
+        {/* Mobile menu dropdown */}
+        {open && (
+          <div className="mt-3 rounded-xl overflow-hidden sm:hidden" style={{border: '3px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)'}}>
+            {links.map((l) => (
+              <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 px-4 py-3.5 text-sm font-bold no-underline"
+                style={{background: 'white', color: 'var(--text)', borderBottom: '1px solid rgba(0,0,0,0.05)'}}>
+                <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: '1.1rem', color: 'var(--primary)'}}>{l.label}</span>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
-
-      {/* Mobile menu dropdown */}
-      {open && (
-        <div className="w-full max-w-xl mx-auto mt-3 rounded-xl overflow-hidden sm:hidden" style={{border: '3px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)'}}>
-          {links.map((l) => (
-            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-2 px-4 py-3.5 text-sm font-bold no-underline"
-              style={{background: 'white', color: 'var(--text)', borderBottom: '1px solid rgba(0,0,0,0.05)'}}>
-              <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: '1.1rem', color: 'var(--primary)'}}>{l.label}</span>
-            </a>
-          ))}
-        </div>
-      )}
     </nav>
   );
 }
