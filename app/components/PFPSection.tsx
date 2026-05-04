@@ -91,18 +91,19 @@ export default function PFPSection() {
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
-            <div className="flex gap-2 w-full max-w-sm mx-auto py-3">
+            <div className="flex gap-2 w-full max-w-sm mx-auto py-3 justify-center">
               <button
                 onClick={handleGenerate}
                 disabled={!canGenerate}
-                className="flex-1 py-2 rounded-xl font-bold text-sm cursor-pointer transition-all"
+                className="py-2 rounded-xl font-bold text-sm cursor-pointer transition-all"
                 style={{
                   background: canGenerate ? 'var(--primary)' : '#ccc',
                   color: 'white',
                   fontSize: '1rem',
-                  padding: '10px 16px',
+                  padding: '10px 32px',
                   boxShadow: canGenerate ? '0 4px 0 #b84a1e' : 'none',
                   opacity: state === 'loading' ? 0.7 : 1,
+                  minWidth: '160px',
                 }}>
                 {state === 'loading' ? '⏳ Generating...' : '🎨 Generate DOOD'}
               </button>
