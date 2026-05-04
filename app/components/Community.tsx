@@ -15,7 +15,7 @@ export default function Community() {
 
   return (
     <section className="w-full flex flex-col items-center px-4 pb-4">
-      <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-2">
+      <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-3">
 
         <h2 className="text-center text-2xl font-black" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px', color: 'white', textShadow: '2px 2px 0 var(--primary)'}}>
           COMMUNITY
@@ -39,18 +39,19 @@ export default function Community() {
           </a>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full flex-wrap sm:flex-nowrap overflow-x-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full flex-wrap sm:flex-nowrap overflow-x-auto">
           <div className="inline-flex rounded-xl bg-white px-3 py-3 overflow-x-auto" style={{border: '3px solid var(--primary)'}}>
             <span className="font-bold text-sm uppercase tracking-wider shrink-0" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px'}}>CA</span>
             <code className="font-mono text-xs sm:text-sm font-bold overflow-x-auto" style={{color: '#1A1A2E', maxWidth: '100%'}}>{CA}</code>
           </div>
           <button
             onClick={handleCopy}
-            className="px-6 py-4 rounded-xl font-bold text-sm cursor-pointer transition-all hover:scale-105"
+            className="px-8 py-4 rounded-xl font-bold text-sm cursor-pointer transition-all hover:scale-105"
             style={{
               background: copied ? '#16A34A' : 'var(--primary)',
               color: 'white',
               boxShadow: copied ? '0 4px 0 #15803D' : '0 4px 0 #b84a1e',
+              minWidth: '120px',
             }}
           >
             {copied ? '✓ Copied' : 'Copy'}
