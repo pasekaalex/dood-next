@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 const rateLimitMap = new Map<string, number>();
-const RATE_LIMIT_MS = 3 * 60 * 1000;
+const RATE_LIMIT_MS = 60 * 1000;
 
 const BASE_PROMPT = `Use the reference image only for the overall crude flat cartoon style, character framing, awkward facial proportions, thick neck silhouette, thin black outlines, flat colors, and deadpan adult-animation mood.
 
@@ -18,10 +20,19 @@ flat 2D cartoon style, tiny dull eyes, thick neck, awkward centered face, deadpa
 User scene:
 `;
 
-const REF_IMAGE = '/pfp-refs/dood-ref-1.jpg';
-
 function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';
+}
+
+function getRefImageBase64(): string {
+  try {
+    const imagePath = join(process.cwd(), 'public', 'pfp-refs', 'dood-ref-1.jpg');
+    const imageBuffer = readFileSync(imagePath);
+    const base64 = imageBuffer.toString('base64');
+    return `data:image/jpeg;base64,${base64}`;
+  } catch {
+    return '';
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -54,6 +65,11 @@ export async function POST(req: NextRequest) {
   try {
     rateLimitMap.set(ip, Date.now());
 
+    const refImage = getRefImageBase64();
+    if (!refImage) {
+      throw new Error('Reference image not found');
+    }
+
     const fullPrompt = `${BASE_PROMPT}${userPrompt.trim()}`;
 
     const response = await fetch('https://api.openai.com/v1/images/edits', {
@@ -64,7 +80,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: 'gpt-image-1',
-        images: [REF_IMAGE],
+        images: [{b64_json: refImage.split(',')[1]}],
         prompt: fullPrompt,
       }),
     });
