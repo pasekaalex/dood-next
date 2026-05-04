@@ -17,8 +17,8 @@ export default function Home() {
       <div className="w-full max-w-xl mx-auto flex flex-col gap-3 flex-1">
         <Hero />
         <PFPSection />
-        <Stats />
         <Community />
+        <Stats />
         <Footer />
       </div>
     </main>
