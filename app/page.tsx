@@ -5,8 +5,8 @@ import Community from './components/Community';
 
 function Footer() {
   return (
-    <footer className="py-4 text-center text-xs px-4" style={{borderTop: '2px solid rgba(255,107,53,0.1)', color: 'rgba(26,26,46,0.3)'}}>
-      DOOD is a memecoin. Not financial advice. DYOR.
+    <footer className="py-4 text-center text-xs px-4" style={{borderTop: '2px solid rgba(255,107,53,0.1)'}}>
+      
     </footer>
   );
 }
