@@ -71,7 +71,7 @@ export default function PFPSection() {
 
   return (
     <section className="w-full flex flex-col items-center px-4 md:px-8 pb-10">
-      <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
+      <div className="w-full max-w-sm mx-auto flex flex-col items-center">
 
         <h2 className="text-center text-3xl md:text-4xl font-black mb-1 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
           DOOD PFP GENERATOR
@@ -85,13 +85,13 @@ export default function PFPSection() {
               value={prompt}
               onChange={e => setPrompt(e.target.value)}
               placeholder="a dude grilling at a backyard BBQ with cowboy hat and beer..."
-              rows={3}
-              className="w-full rounded-xl p-3 text-sm resize-none outline-none font-semibold transition-colors"
+              rows={6}
+              className="w-full max-w-sm rounded-xl p-3 text-sm resize-none outline-none font-semibold transition-colors"
               style={{border: '2px solid var(--surface)', color: '#1A1A2E', background: '#f5f5f5'}}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
             />
 
-            <div className="flex gap-2 w-full max-w-md mx-auto">
+            <div className="flex gap-2 w-full max-w-sm mx-auto">
               <button
                 onClick={handleGenerate}
                 disabled={!canGenerate}
@@ -134,7 +134,7 @@ export default function PFPSection() {
                   </div>
                 </div>
               ) : imageUrl ? (
-                <img src={imageUrl} alt="Generated DOOD" className="rounded-xl" style={{aspectRatio: '1/1', maxWidth: '512px', width: '100%', objectFit: 'cover'}} />
+                <img src={imageUrl} alt="Generated DOOD" className="rounded-xl" style={{aspectRatio: '1/1', maxWidth: '256px', width: '100%', objectFit: 'cover'}} />
               ) : null}
             </div>
           )}
