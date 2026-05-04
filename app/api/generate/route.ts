@@ -10,7 +10,7 @@ Do NOT copy the exact character identity, hat, logo, face, outfit, body type, or
 Generate a new original character each time.
 
 Randomize:
-skin tone, body type, neck width, face shape, hairstyle, eye color, facial hair, hat, shirt style, shirt color, outfit details, stains/accessories.
+skin tone, body type, neck width, face shape, mustache, hairstyle, eye color, facial hair, hat, shirt style, shirt color, outfit details, stains/accessories.
 
 Keep:
 flat 2D cartoon style, tiny dull eyes, thick neck, awkward centered face, deadpan expression, simple suburban background, no gradients, no realistic lighting.
