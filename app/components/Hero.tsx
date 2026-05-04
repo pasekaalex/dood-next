@@ -5,11 +5,6 @@ export default function Hero() {
     <section className="flex flex-col items-center justify-center text-center px-4 pt-12 pb-6 min-h-[70vh]">
       <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-4">
 
-        <div className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase border-2"
-          style={{borderColor: 'var(--primary)', background: 'white', color: 'var(--primary)', boxShadow: '2px 2px 0 var(--primary)'}}>
-          🟣 Solana
-        </div>
-
         <div className="inline-block px-6 py-4 rounded-xl" style={{background: 'var(--secondary)', boxShadow: '6px 6px 0 var(--primary)'}}>
           <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: 'clamp(4rem, 16vw, 8rem)', lineHeight: 0.9, letterSpacing: '4px', color: '#1A1A2E', textShadow: '3px 3px 0 var(--primary)', display: 'inline-block'}}>
             $DOOD
