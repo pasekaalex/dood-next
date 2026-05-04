@@ -14,17 +14,17 @@ export default function Nav() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-3" style={{background: 'rgba(255,245,230,0.97)', backdropFilter: 'blur(8px)', borderBottom: '2px solid rgba(255,107,53,0.15)'}}>
-      <div className="max-w-xl mx-auto flex items-center justify-between">
+      <div className="w-full max-w-xl mx-auto flex items-center justify-between">
 
         <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: '1.8rem', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
           DOOD
         </span>
 
         {/* Desktop: inline links */}
-        <div className="hidden sm:flex gap-2">
+        <div className="hidden sm:flex gap-2 items-center">
           {links.map((l) => (
             <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-              className="px-4 py-2 rounded-xl text-sm font-bold no-underline transition-transform hover:-translate-y-0.5"
+              className="px-4 py-2 rounded-xl text-sm font-bold no-underline"
               style={{background: 'var(--primary)', color: 'white', boxShadow: '0 4px 0 #b84a1e'}}>
               {l.label}
             </a>
@@ -41,7 +41,7 @@ export default function Nav() {
 
       {/* Mobile menu dropdown */}
       {open && (
-        <div className="max-w-xl mx-auto mt-3 rounded-xl overflow-hidden sm:hidden" style={{border: '3px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)'}}>
+        <div className="w-full max-w-xl mx-auto mt-3 rounded-xl overflow-hidden sm:hidden" style={{border: '3px solid var(--primary)', boxShadow: '4px 4px 0 var(--primary)'}}>
           {links.map((l) => (
             <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
               onClick={() => setOpen(false)}
