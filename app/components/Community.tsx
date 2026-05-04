@@ -39,10 +39,10 @@ export default function Community() {
           </a>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full">
-          <div className="inline-flex rounded-xl bg-white px-5 py-3" style={{border: '3px solid var(--primary)'}}>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 w-full flex-wrap sm:flex-nowrap overflow-x-auto">
+          <div className="inline-flex rounded-xl bg-white px-3 py-3 overflow-x-auto" style={{border: '3px solid var(--primary)'}}>
             <span className="font-bold text-sm uppercase tracking-wider shrink-0" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '2px'}}>CA</span>
-            <code className="font-mono text-sm sm:text-base break-all font-bold" style={{color: '#1A1A2E'}}>{CA}</code>
+            <code className="font-mono text-xs sm:text-sm font-bold overflow-x-auto" style={{color: '#1A1A2E', maxWidth: '100%'}}>{CA}</code>
           </div>
           <button
             onClick={handleCopy}
