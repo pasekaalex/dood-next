@@ -38,7 +38,7 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mt-6">
           <div className="inline-flex rounded-xl bg-white px-3 py-2" style={{border: '2px solid var(--primary)'}}>
             <span className="font-bold text-xs uppercase tracking-wider shrink-0" style={{color: 'var(--primary)', fontFamily: 'var(--font-bangers), cursive', letterSpacing: '1px'}}>CA</span>
             <code className="font-mono text-xs font-bold" style={{color: '#1A1A2E'}}>{CA}</code>
