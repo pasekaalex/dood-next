@@ -5,50 +5,21 @@ import { join } from 'path';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `You are generating a character in the EXACT STYLE of crude adult animation (like South Park, Metalocalypse, Beavis and Butt-Head, Adult Swim cartoons).
+const BASE_PROMPT = `Like the reference image use overall crude flat cartoon style, character framing, awkward facial proportions, thick neck silhouette, thin black outlines, flat colors, and deadpan adult-animation mood.
 
-STYLE DESCRIPTION (follow this exactly):
-LINE WORK:
-- Thick black outlines (2-4px), hand-drawn wobbly appearance
-- Lines are not perfectly smooth — slight wobble like drawn on paper
-- No anti-aliasing or smooth digital lines
+Generate a new original character each time.
 
-COLOR PALETTE:
-- Flat solid colors, NO gradients, NO shading, NO highlights
-- Colors are slightly desaturated, like marker on paper
-- Skin tones are plain/flesh colored, not detailed
-- Clothing is solid flat colors with no texture
-- Simple color blocking, like cut-out paper
+Randomize:
+skin tone, body type, neck width, face shape, mustache, hairstyle, eye color, facial hair, hat, shirt style, shirt color, outfit details, stains/accessories.
 
-CHARACTER PROPORTIONS:
-- Very exaggerated proportions: huge round head (1/3 of body), tiny body
-- Small beady dot eyes, barely visible nostrils
-- Thick neck (almost as wide as head)
-- Simple U-shaped mouths, barely open
-- Tiny thin stick arms and legs, no muscle definition
-- Hands are simple blobs, not detailed fingers
-
-FACIAL EXPRESSION:
-- Completely deadpan, blank, stupid look
-- Eyes are just black dots, no whites visible
-- Eyebrows barely visible or nonexistent
-- Mouth is simple line or small U shape
-
-BACKGROUND:
-- Solid single color or simple gradient, no detail
-- Keep it minimal/floating in void
-
-TECHNICAL:
-- Clean flat shapes, no anti-aliasing
-- No realistic shadows or highlights
-- Everything looks hand-drawn, rough, crude
-- Character faces forward or slightly off-center
+Keep:
+flat 2D cartoon style, tiny dull eyes, thick neck, awkward centered face, deadpan expression, simple suburban background, no gradients, no realistic lighting.
 
 User scene:
 USER PROMPT HERE
 
 Output:
-square 1:1 profile picture, centered waist-up character, facing camera.`;
+square 1:1 profile picture, centered waist-up character, facing camera, simple background.`;
 
 function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';
@@ -56,8 +27,8 @@ function getClientIP(req: NextRequest): string {
 
 function getRandomRefImage(): { path: string; name: string } {
   return {
-    path: join(process.cwd(), 'public', 'pfp-refs', 'dood-ref-1.jpg'),
-    name: 'dood-ref-1.jpg'
+    path: join(process.cwd(), 'public', 'slideshow', 'slide-1.jpg'),
+    name: 'slide-1.jpg'
   };
 }
 
