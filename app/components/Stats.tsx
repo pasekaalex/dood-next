@@ -91,10 +91,9 @@ export default function Stats() {
               key={s.key}
               className="rounded-xl p-4 text-center"
               style={{
-                background: 'rgba(255,255,255,0.15)',
-                backdropFilter: 'blur(8px)',
-                border: `3px solid ${s.color}`,
-                boxShadow: `4px 4px 0 ${s.color}`,
+                background: 'var(--secondary)',
+                border: `4px solid var(--primary)`,
+                boxShadow: `6px 6px 0 var(--primary)`,
                 transition: 'transform 0.2s, box-shadow 0.2s',
                 transform: s.pulse ? 'scale(1.05)' : 'scale(1)',
               }}
@@ -103,8 +102,8 @@ export default function Stats() {
                 className="font-black text-lg md:text-xl mb-0.5"
                 style={{
                   fontFamily: "'Bangers', cursive",
-                  color: '#ffffff',
-                  textShadow: `2px 2px 0 ${s.color}`,
+                  color: '#1A1A2E',
+                  textShadow: `2px 2px 0 var(--primary)`,
                   letterSpacing: '1px',
                   transition: 'transform 0.2s',
                   transform: s.flash ? 'scale(1.15)' : 'scale(1)',
@@ -114,7 +113,7 @@ export default function Stats() {
               </div>
               <div
                 className="text-xs font-bold uppercase"
-                style={{ color: s.color, letterSpacing: '2px' }}
+                style={{ color: '#1A1A2E', letterSpacing: '2px', fontFamily: 'var(--font-bangers), cursive' }}
               >
                 {s.label}
               </div>
