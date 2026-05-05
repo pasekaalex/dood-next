@@ -88,7 +88,7 @@ export default function PFPSection({ onGenerated }: Props) {
           placeholder="Describe your DOOD... a dude grilling, a chill dude with shades, a cowboy at a cookout..."
           rows={2}
           className="w-full rounded-xl resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
-          style={{border: '3px solid var(--primary)', color: '#1A1A2E', background: '#ffffff', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center', padding: '12px', boxShadow: '4px 4px 0 var(--primary)'}}
+          style={{border: '3px solid var(--primary)', color: '#1A1A2E', background: '#ffffff', fontSize: '1.1rem', lineHeight: '1.6', textAlign: 'center', padding: '12px', boxShadow: '4px 4px 0 var(--primary)'}}
           onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
         />
 
@@ -99,7 +99,7 @@ export default function PFPSection({ onGenerated }: Props) {
           style={{
             background: canGenerate ? 'var(--primary)' : '#999',
             color: 'white',
-            fontSize: '1.1rem',
+            fontSize: '1.2rem',
             padding: '10px 40px',
             boxShadow: 'none',
             opacity: state === 'loading' ? 0.7 : 1,
