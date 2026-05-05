@@ -10,7 +10,7 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 
 [EYES - IMPORTANT] The character must have eyes matching the style in the reference images. Pay close attention to how eyes are drawn across all references — same eye shape, same iris style, same outline style, same relative size.
 
-[FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, nose, mouth, jawline. These structural features come from the reference images.
+[FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, wide/broad shoulders, nose, mouth, jawline. These structural features come from the reference images.
 
 [NO SHOW REFERENCE] Do NOT derive style from any specific animated series. The reference images on this site are the sole style source.
 
@@ -18,7 +18,7 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 
 [USER INTENT] The user's prompt is the SOURCE OF TRUTH — ALL elements in the prompt must appear in the output. If the user says "guy with beer smoking cig", the output MUST show both a beer AND a cigarette. Do not drop, ignore, or partially render elements from the user's prompt. Every word in the prompt matters.
 
-[SETTING] Default suburban backyard. If user specifies a different setting (desert, beach, etc.), follow it.
+[SETTING] Default to a RANDOMIZED suburban background. If user specifies a setting, follow it. If not specified, pick from: concrete garage, messy backyard with fence, dark basement, driveway, front porch, house with siding. Vary it each time — do not default to the same background twice.
 
 
 [CHARACTER VARIETY] When not specified, randomize: hair style/color, facial hair (mustache/beard/shaved), hats (cap/cowboy/beanie/none), shirt/outfit. Each generation must be unique.
