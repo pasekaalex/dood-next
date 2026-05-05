@@ -21,7 +21,7 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 [SETTING] Default to a RANDOMIZED suburban background. If user specifies a setting, follow it. If not specified, pick from: concrete garage, messy backyard with fence, dark basement, driveway, front porch, house with siding. Vary it each time — do not default to the same background twice.
 
 
-[CHARACTER VARIETY] When not specified, randomize ALL of the following: hair style/color, hat (trucker cap, cowboy hat, beanie, or none), t-shirt style/color, facial hair (mustache/beard/shaved). Each generation must be unique and never repeat the same combination.
+[CHARACTER VARIETY] When not specified, randomize ALL of the following: hair style/color, hat (trucker cap, cowboy hat, beanie, or none), t-shirt COLOR AND STYLE (vary the color — not just navy/dark — try red, green, gray, white, yellow, etc.), facial hair (mustache/beard/shaved). Each generation must be unique and never repeat the same combination. Do NOT default to the same t-shirt color across generations.
 
 [EXPRESSION] When not specified by the user, randomize from: happy, sad, angry, determined, or default (neutral). Keep it subtle — mild version of the emotion, not exaggerated.
 
