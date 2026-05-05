@@ -5,7 +5,7 @@ import { join } from 'path';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `Like the reference image in the exact art style and lighting of the attached image.
+const BASE_PROMPT = `Like the reference images in the exact art style and lighting of the attached images.
 
 User scene:
 USER PROMPT HERE
@@ -17,11 +17,19 @@ function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';
 }
 
-function getRandomRefImage(): { path: string; name: string } {
-  return {
-    path: join(process.cwd(), 'public', 'slideshow', 'slide-1.jpg'),
-    name: 'slide-1.jpg'
-  };
+function getAllRefImages(): { path: string; name: string }[] {
+  const slideshowDir = join(process.cwd(), 'public', 'slideshow');
+  return [
+    { path: join(slideshowDir, 'slide-1.jpg'), name: 'slide-1.jpg' },
+    { path: join(slideshowDir, 'slide-2.jpg'), name: 'slide-2.jpg' },
+    { path: join(slideshowDir, 'slide-3.jpg'), name: 'slide-3.jpg' },
+    { path: join(slideshowDir, 'slide-4.jpg'), name: 'slide-4.jpg' },
+    { path: join(slideshowDir, 'slide-5.jpg'), name: 'slide-5.jpg' },
+    { path: join(slideshowDir, 'slide-6.jpg'), name: 'slide-6.jpg' },
+    { path: join(slideshowDir, 'slide-7.jpg'), name: 'slide-7.jpg' },
+    { path: join(slideshowDir, 'slide-8.jpg'), name: 'slide-8.jpg' },
+    { path: join(slideshowDir, 'slide-9.jpg'), name: 'slide-9.jpg' },
+  ];
 }
 
 export async function POST(req: NextRequest) {
@@ -52,13 +60,14 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const ref = getRandomRefImage();
-    const imageBuffer = readFileSync(ref.path);
-    const base64Image = imageBuffer.toString('base64');
-    console.log('Reference image:', ref.name, '- Size:', blob.size, 'bytes');
+    const refs = getAllRefImages();
+    const imageArray = refs.map(r => {
+      const buf = readFileSync(r.path);
+      return `data:image/jpeg;base64,${buf.toString('base64')}`;
+    });
+    console.log('Sending', refs.length, 'reference images');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
-    console.log('Final prompt (first 200 chars):', fullPrompt.substring(0, 200));
 
     const response = await fetch('https://api.openai.com/v1/images/edits', {
       method: 'POST',
@@ -68,11 +77,12 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: 'gpt-image-1',
-        images: [`data:image/jpeg;base64,${base64Image}`],
+        images: imageArray,
         prompt: fullPrompt,
         quality: 'high',
         size: '1024x1024',
       }),
+    });
 
     if (!response.ok) {
       const err = await response.text();
