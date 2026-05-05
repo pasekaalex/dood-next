@@ -37,7 +37,7 @@ body {
 
 @media (max-width: 768px) {
   body {
-    background: url('/cloudshd.png') center center / 100% 100% no-repeat;
+    background: url('/cloudshd.png') center top / 100% auto no-repeat;
     background-attachment: scroll;
   }
 }
