@@ -74,12 +74,12 @@ export async function POST(req: NextRequest) {
 
   try {
     const refs = getAllRefImages();
-    const imageArray = await Promise.all(refs.slice(0, 3).map(async r => {
+    const imageArray = await Promise.all(refs.map(async r => {
       const buf = readFileSync(r.path);
       const base64 = await resizeToBase64(buf, 512);
       return { image_url: `data:image/jpeg;base64,${base64}` };
     }));
-    console.log('Sending 3 resized images as {image_url: data:...}');
+    console.log(`Sending ${imageArray.length} resized images as {image_url: data:...}`);
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
 
