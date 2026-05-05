@@ -29,9 +29,17 @@
 body {
   font-family: 'Nunito', sans-serif;
   background: url('/cloudshd.png') center center / cover no-repeat fixed;
+  background-attachment: scroll;
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  body {
+    background: url('/cloudshd.png') center center / 100% 100% no-repeat;
+    background-attachment: scroll;
+  }
 }
 
 /* Cartoon background shapes */
