@@ -46,26 +46,26 @@ async function resizeToBase64(buf: Buffer, maxWidth = 384): Promise<string> {
 }
 
 function getAllRefImages(): { path: string; name: string }[] {
-  const slideshowDir = join(process.cwd(), 'public', 'slideshow');
+  const refDir = join(process.cwd(), 'public', 'pfp-refs');
   return [
-    { path: join(slideshowDir, 'angry.jpg'), name: 'angry' },
-    { path: join(slideshowDir, 'beach.jpg'), name: 'beach' },
-    { path: join(slideshowDir, 'car.jpg'), name: 'car' },
-    { path: join(slideshowDir, 'depressed.jpg'), name: 'depressed' },
-    { path: join(slideshowDir, 'determined.jpg'), name: 'determined' },
-    { path: join(slideshowDir, 'frontyard.jpg'), name: 'frontyard' },
-    { path: join(slideshowDir, 'frontyard-blank.jpg'), name: 'frontyard-blank' },
-    { path: join(slideshowDir, 'frontyard-blonde.jpg'), name: 'frontyard-blonde' },
-    { path: join(slideshowDir, 'garage.jpg'), name: 'garage' },
-    { path: join(slideshowDir, 'garage-beer.jpg'), name: 'garage-beer' },
-    { path: join(slideshowDir, 'grill.jpg'), name: 'grill' },
-    { path: join(slideshowDir, 'happy.jpg'), name: 'happy' },
-    { path: join(slideshowDir, 'inside-beer.jpg'), name: 'inside-beer' },
-    { path: join(slideshowDir, 'sad.jpg'), name: 'sad' },
-    { path: join(slideshowDir, 'store.jpg'), name: 'store' },
-    { path: join(slideshowDir, 'yard.jpg'), name: 'yard' },
-    { path: join(slideshowDir, 'yard-grill.jpg'), name: 'yard-grill' },
-    { path: join(slideshowDir, 'yard-smoke.jpg'), name: 'yard-smoke' },
+    { path: join(refDir, 'angry.jpg'), name: 'angry' },
+    { path: join(refDir, 'beach.jpg'), name: 'beach' },
+    { path: join(refDir, 'car.jpg'), name: 'car' },
+    { path: join(refDir, 'depressed.jpg'), name: 'depressed' },
+    { path: join(refDir, 'determined.jpg'), name: 'determined' },
+    { path: join(refDir, 'frontyard.jpg'), name: 'frontyard' },
+    { path: join(refDir, 'frontyard-blank.jpg'), name: 'frontyard-blank' },
+    { path: join(refDir, 'frontyard-blonde.jpg'), name: 'frontyard-blonde' },
+    { path: join(refDir, 'garage.jpg'), name: 'garage' },
+    { path: join(refDir, 'garage-beer.jpg'), name: 'garage-beer' },
+    { path: join(refDir, 'grill.jpg'), name: 'grill' },
+    { path: join(refDir, 'happy.jpg'), name: 'happy' },
+    { path: join(refDir, 'inside-beer.jpg'), name: 'inside-beer' },
+    { path: join(refDir, 'sad.jpg'), name: 'sad' },
+    { path: join(refDir, 'store.jpg'), name: 'store' },
+    { path: join(refDir, 'yard.jpg'), name: 'yard' },
+    { path: join(refDir, 'yard-grill.jpg'), name: 'yard-grill' },
+    { path: join(refDir, 'yard-smoke.jpg'), name: 'yard-smoke' },
   ];
 }
 
