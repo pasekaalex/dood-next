@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import sharp from 'sharp';
 
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `Generate a PFP. You must maintain the precise facial structure, the unique neck shape, and the front-facing neutral gaze from the FIRST reference image (template_ref). All facial features and head shapes must be cloned from that template.
+const BASE_PROMPT = `[Grounding] The subject's face, neck shape, and head structure must match Reference Image 1 exactly. Maintain the precise facial structure from that template.
 
 Use the remaining reference images for style and elements only.
 
@@ -19,6 +20,14 @@ square 1:1 profile picture, centered waist-up character, facing camera, simple b
 
 function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';
+}
+
+async function resizeToBase64(buf: Buffer, maxWidth = 512): Promise<string> {
+  const resized = await sharp(buf)
+    .resize(maxWidth, maxWidth, { fit: 'inside', withoutEnlargement: true })
+    .jpeg({ quality: 80 })
+    .toBuffer();
+  return resized.toString('base64');
 }
 
 function getAllRefImages(): { path: string; name: string }[] {
@@ -65,11 +74,12 @@ export async function POST(req: NextRequest) {
 
   try {
     const refs = getAllRefImages();
-    const imageArray = [refs[0], refs[1], refs[2]].map(r => {
+    const imageArray = await Promise.all(refs.slice(0, 3).map(async r => {
       const buf = readFileSync(r.path);
-      return { image_url: `data:image/jpeg;base64,${buf.toString('base64')}` };
-    });
-    console.log('Sending 3 images as {image_url: data:...}');
+      const base64 = await resizeToBase64(buf, 512);
+      return { image_url: `data:image/jpeg;base64,${base64}` };
+    }));
+    console.log('Sending 3 resized images as {image_url: data:...}');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
 
@@ -83,6 +93,7 @@ export async function POST(req: NextRequest) {
         model: 'gpt-image-1',
         images: imageArray,
         prompt: fullPrompt,
+        action: 'edit',
         input_fidelity: 'high',
         quality: 'high',
         size: '1024x1024',
