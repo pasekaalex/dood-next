@@ -10,7 +10,7 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 
 [EYES - IMPORTANT] The character must have eyes matching the style in the reference images. Pay close attention to how eyes are drawn across all references — same eye shape, same iris style, same outline style, same relative size. Iris color should vary — randomize between blue, green, or brown when not specified by user.
 
-[FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, wide/broad shoulders, nose, mouth, jawline. These structural features come from the reference images. Keep the mouth SMALL — closed or neutral expression. No open mouths, no visible teeth, no gap teeth unless the user explicitly asks for it.
+[FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, wide/broad shoulders, nose, mouth, jawline. These structural features come from the reference images. No gap teeth unless the user explicitly asks.
 
 [NO SHOW REFERENCE] Do NOT derive style from any specific animated series. The reference images on this site are the sole style source.
 
