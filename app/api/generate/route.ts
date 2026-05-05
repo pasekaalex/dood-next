@@ -65,12 +65,11 @@ export async function POST(req: NextRequest) {
 
   try {
     const refs = getAllRefImages();
-    // Try b64_json format per OpenAI docs
     const imageArray = [refs[0], refs[1], refs[2]].map(r => {
       const buf = readFileSync(r.path);
-      return { b64_json: buf.toString('base64') };
+      return { data: buf.toString('base64') };
     });
-    console.log('Sending 3 images as b64_json objects');
+    console.log('Sending 3 images as {data: base64}');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
 
