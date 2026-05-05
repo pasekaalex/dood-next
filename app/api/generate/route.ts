@@ -67,9 +67,9 @@ export async function POST(req: NextRequest) {
     const refs = getAllRefImages();
     const imageArray = [refs[0], refs[1], refs[2]].map(r => {
       const buf = readFileSync(r.path);
-      return { data: buf.toString('base64') };
+      return { image_url: `data:image/jpeg;base64,${buf.toString('base64')}` };
     });
-    console.log('Sending 3 images as {data: base64}');
+    console.log('Sending 3 images as {image_url: data:...}');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
 
@@ -83,6 +83,7 @@ export async function POST(req: NextRequest) {
         model: 'gpt-image-1',
         images: imageArray,
         prompt: fullPrompt,
+        input_fidelity: 'high',
         quality: 'high',
         size: '1024x1024',
       }),
