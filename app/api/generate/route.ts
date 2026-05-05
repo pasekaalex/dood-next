@@ -8,7 +8,7 @@ const RATE_LIMIT_MS = 10 * 1000;
 
 const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The style should match the reference images — NOT any specific TV show. Do not lean into or reference King of the Hill, Adventure Time, Bob's Burgers, or any other existing show. The reference images are the ONLY style guide.
 
-[EYES - IMPORTANT] The character must have eyes matching the style in the reference images. Pay close attention to how eyes are drawn across all references — same eye shape, same iris style, same outline style, same relative size.
+[EYES - IMPORTANT] The character must have eyes matching the style in the reference images. Pay close attention to how eyes are drawn across all references — same eye shape, same iris style, same outline style, same relative size. Iris color should vary — randomize between blue, green, or brown when not specified by user.
 
 [FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, wide/broad shoulders, nose, mouth, jawline. These structural features come from the reference images.
 
