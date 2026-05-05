@@ -5,19 +5,13 @@ import { join } from 'path';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `Use Image 1 as the structural reference (face, body shape, proportions). Use Images 2-9 as a style gallery (art style, colors, line work, mood).
+const BASE_PROMPT = `Generate a PFP. You must maintain the precise facial structure, the unique neck shape, and the front-facing neutral gaze from the LAST reference image (template_ref). All facial features and head shapes must be cloned from that template.
 
-Maintain the facial structure and character layout from Image 1 while applying the collective crude cartoon aesthetic from the remaining images.
+Use the remaining reference images for style and elements only.
 
-Generate a new original character each time.
+You may modify other elements (clothing, items held, background, expression, facial hair) based on the combined style from all reference images.
 
-Randomize:
-skin tone, body type, neck width, face shape, mustache, hairstyle, eye color, facial hair, hat, shirt style, shirt color, outfit details, stains/accessories.
-
-Keep:
-flat 2D cartoon style, tiny dull eyes, thick neck, awkward centered face, deadpan expression, simple suburban background, no gradients, no realistic lighting.
-
-User scene:
+User request:
 USER PROMPT HERE
 
 Output:
@@ -75,7 +69,7 @@ export async function POST(req: NextRequest) {
       const buf = readFileSync(r.path);
       return `data:image/jpeg;base64,${buf.toString('base64')}`;
     });
-    console.log('Sending', refs.length, 'reference images');
+    console.log('Sending', refs.length, 'reference images (last one is template_ref)');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
 
