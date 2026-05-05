@@ -6,17 +6,27 @@ import sharp from 'sharp';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `[Grounding] The subject's face, neck shape, and head structure must match Reference Image 1 exactly. Maintain the precise facial structure from that template.
+const BASE_PROMPT = `[Grounding] The subject's face, neck shape, head structure, and EYES must match Reference Image 1 exactly. Eyes must match the precise style: eye shape, iris size, pupil, eye outline, and eye placement from the template.
 
 Use the remaining reference images for style and elements only.
 
 You may modify other elements (clothing, items held, background, expression, facial hair) based on the combined style from all reference images.
 
+**Background setting:** Place the character in a suburban backyard scene — driveway, garage, fence, grass, lawn chairs, grill, or similar residential outdoor setting. Vary the background elements.
+
+**Character variety:** Generate a UNIQUE character each time. Randomize these when not specified by the user:
+- Hair style and color (variety: short, medium, long, curly, straight, bald, etc.)
+- Facial hair (mustache styles, beard, clean-shaven — vary it)
+- Hats or headwear (cap, cowboy hat, beanie, or no hat)
+- Shirt/outfit style and color
+
+Do NOT produce the same character twice. Each generation must be distinct.
+
 User request:
 USER PROMPT HERE
 
 Output:
-square 1:1 profile picture, centered waist-up character, facing camera, simple background.`;
+square 1:1 profile picture, centered waist-up character, facing camera, suburban backyard residential background.`;
 
 function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';
