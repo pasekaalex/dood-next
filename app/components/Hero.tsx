@@ -20,7 +20,7 @@ export default function Hero() {
       <section className="flex flex-col items-center justify-center text-center px-4 py-1">
         <div className="w-full max-w-xl mx-auto flex flex-col items-center gap-3">
           <img
-            src="/logo.png"
+            src="/logo-trim.png"
             alt="Dood's"
             style={{
               maxHeight: '140px',
@@ -47,7 +47,7 @@ export default function Hero() {
               }}
             >
               Buy
-              <img src="/logo.png" alt="" style={{height: '30px', objectFit: 'contain'}} />
+              <img src="/logo-trim.png" alt="" style={{height: '30px', objectFit: 'contain'}} />
             </a>
           </div>
 
