@@ -65,11 +65,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const refs = getAllRefImages();
-    const imageArray = refs.map(r => {
-      const buf = readFileSync(r.path);
-      return { b64_json: buf.toString('base64') };
-    });
-    console.log('Sending', refs.length, 'reference images as b64_json objects');
+    // Test with just first image first
+    const firstBuf = readFileSync(refs[0].path);
+    const imageArray = [{ b64_json: firstBuf.toString('base64') }];
+    console.log('Sending 1 reference image (testing single first)');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
 
