@@ -23,6 +23,8 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 
 [CHARACTER VARIETY] When not specified, randomize: hair style/color, facial hair (mustache/beard/shaved), hats (cap/cowboy/beanie/none), shirt/outfit. Each generation must be unique.
 
+EXCEPTION — If the user's prompt describes an ANIMAL (dolphin, cat, dog, bear, fish, bird, etc.), do NOT add facial hair, mustache, or human-style facial hair. Animals get bare faces unless the user explicitly asks for it.
+
 User request:
 USER PROMPT HERE
 
