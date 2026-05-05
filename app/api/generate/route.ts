@@ -14,20 +14,15 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 
 [NO SHOW REFERENCE] Do NOT derive style from any specific animated series. The reference images on this site are the sole style source.
 
-[CUSTOMIZABLE] Hair, mustache, beard, shirt/outfit, background/setting — vary based on user prompt or randomization.
-
 [USER INTENT] The user's prompt is the SOURCE OF TRUTH — ALL elements in the prompt must appear in the output. If the user says "guy with beer smoking cig", the output MUST show both a beer AND a cigarette. Do not drop, ignore, or partially render elements from the user's prompt. Every word in the prompt matters.
 
 [SETTING] Default to a RANDOMIZED suburban background. If user specifies a setting, follow it. If not specified, pick from: concrete garage, messy backyard with fence, dark basement, driveway, front porch, house with siding. Vary it each time — do not default to the same background twice.
 
+[RANDOMIZE THIS] When not specified, randomize: hair style/color (buzzcut, mullet, curly, bald, etc.), hat (trucker cap, cowboy hat, beanie, or none), t-shirt COLOR (red, green, gray, white, yellow, navy — vary it, not always the same), facial hair (mustache, beard, or clean-shaved), expression (happy, sad, angry, determined, or default/neutral — subtle), background setting (concrete garage, messy backyard, dark basement, driveway, front porch, house with siding — vary it).
 
-[CHARACTER VARIETY] When not specified, randomize ALL of the following: hair style/color (buzzcut, mullet, curly, bald, etc.), hat (trucker cap, cowboy hat, beanie, or none), t-shirt COLOR AND STYLE (vary the color — not just navy/dark — try red, green, gray, white, yellow, etc.), facial hair (mustache, beard, or clean-shaved — NO single facial hair type should dominate). Each generation must be unique and never repeat the same combination. Do NOT default to the same t-shirt color or same facial hair across generations.
-
-[EXPRESSION] When not specified by the user, randomize from: happy, sad, angry, determined, or default (neutral). Keep it subtle — mild version of the emotion, not exaggerated.
+[DO NOT RANDOMIZE] Beer, cigarettes, cigars, soda cans, bottles, or any other props — ONLY add these if the user explicitly mentions them in their prompt. If the user does not say "beer" = do NOT add beer. If the user does not say "cigarette" or "smoking" = do NOT add cigarettes. NEVER add props the user did not mention.
 
 EXCEPTION — If the user's prompt describes an ANIMAL (dolphin, cat, dog, bear, fish, bird, etc.), do NOT add facial hair, mustache, or human-style facial hair. Animals get bare faces unless the user explicitly asks for it.
-
-Do NOT add props the user did not mention. If the user does not say "beer", do NOT add beer. If the user does not say "cigarette" or "smoking", do NOT add cigarettes. Props only appear if the user explicitly mentions them.
 
 User request:
 USER PROMPT HERE
@@ -130,7 +125,6 @@ export async function POST(req: NextRequest) {
       let errMsg = 'OpenAI API error';
       try {
         const parsed = JSON.parse(errData);
-        // Check for content policy violations
         if (parsed.error?.type === 'content_policy_violation' || parsed.error?.type === 'invalid_request_error') {
           errMsg = 'This prompt was flagged by our content filter. Try a different description — keep it family-friendly and avoid referencing specific characters, celebrities, or copyrighted content.';
         } else {
