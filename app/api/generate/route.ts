@@ -8,7 +8,7 @@ const RATE_LIMIT_MS = 30 * 1000;
 
 const BASE_PROMPT = `[Style Reference] Reference Images 1-9 define the ANIMATION STYLE ONLY: art style, line quality, color palette, shading, character proportions, and visual aesthetic. Follow the style exactly.
 
-[Identity Grounding] Reference Image 1 sets the FACIAL STRUCTURE: face shape, eye shape/style, nose, mouth, jawline, neck. Match these features precisely.
+[Identity Grounding] Reference Image 1 sets the FACIAL STRUCTURE: face shape, eyes (shape, size, iris, pupil, outline), nose, mouth, jawline, neck. Match these features precisely.
 
 [User Intent] The user's prompt is the PRIMARY creative direction — honor it fully. Do not override or ignore key descriptors like "ogre", "wizard", "viking", "zombie", etc. Interpret these creatively within the animation style.
 
