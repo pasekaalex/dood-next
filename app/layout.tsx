@@ -18,6 +18,19 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   title: "$DOOD — Just a Dood Being a Dood",
   description: "The official $DOOD token site. Buy, trade, and generate your own DOOD PFP on Solana.",
+  openGraph: {
+    title: "$DOOD — Just a Dood Being a Dood",
+    description: "Generate your own DOOD PFP. AI-powered on Solana.",
+    images: [{
+      url: "https://doodpfp.lol/logo.png",
+      width: 512,
+      height: 512,
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://doodpfp.lol/logo.png"],
+  },
 };
 
 export default function RootLayout({
