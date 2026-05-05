@@ -27,6 +27,8 @@ const BASE_PROMPT = `[ANIMATION STYLE - ALL 18 REFERENCES] All reference images 
 
 Do NOT copy the specific character's face, beard, haircut, or outfit from any single reference image. Generate a FRESH, UNIQUE character each time.
 
+Do NOT add props the user did not mention. If the user does not say "beer", do NOT add beer. If the user does not say "cigarette" or "smoking", do NOT add cigarettes. Props only appear if the user explicitly mentions them.
+
 EXCEPTION — If the user's prompt describes an ANIMAL (dolphin, cat, dog, bear, etc.), no facial hair unless user explicitly asks.
 
 User request:
