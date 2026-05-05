@@ -5,7 +5,7 @@ import { join } from 'path';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `Generate a PFP. You must maintain the precise facial structure, the unique neck shape, and the front-facing neutral gaze from the LAST reference image (template_ref). All facial features and head shapes must be cloned from that template.
+const BASE_PROMPT = `Generate a PFP. You must maintain the precise facial structure, the unique neck shape, and the front-facing neutral gaze from the FIRST reference image (template_ref). All facial features and head shapes must be cloned from that template.
 
 Use the remaining reference images for style and elements only.
 
