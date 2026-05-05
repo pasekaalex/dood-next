@@ -10,7 +10,7 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 
 [EYES - IMPORTANT] The character must have eyes matching the style in the reference images. Pay close attention to how eyes are drawn across all references — same eye shape, same iris style, same outline style, same relative size. Iris color should vary — randomize between blue, green, or brown when not specified by user.
 
-[FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, wide/broad shoulders, nose, mouth, jawline. These structural features come from the reference images.
+[FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, wide/broad shoulders, nose, mouth, jawline. These structural features come from the reference images. Keep the mouth SMALL — closed or neutral expression. No open mouths, no visible teeth, no gap teeth unless the user explicitly asks for it.
 
 [NO SHOW REFERENCE] Do NOT derive style from any specific animated series. The reference images on this site are the sole style source.
 
@@ -21,7 +21,7 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 [SETTING] Default to a RANDOMIZED suburban background. If user specifies a setting, follow it. If not specified, pick from: concrete garage, messy backyard with fence, dark basement, driveway, front porch, house with siding. Vary it each time — do not default to the same background twice.
 
 
-[CHARACTER VARIETY] When not specified, randomize ALL of the following: hair style/color, hat (trucker cap, cowboy hat, beanie, or none), t-shirt COLOR AND STYLE (vary the color — not just navy/dark — try red, green, gray, white, yellow, etc.), facial hair (mustache/beard/shaved). Each generation must be unique and never repeat the same combination. Do NOT default to the same t-shirt color across generations.
+[CHARACTER VARIETY] When not specified, randomize ALL of the following: hair style/color (buzzcut, mullet, curly, bald, etc.), hat (trucker cap, cowboy hat, beanie, or none), t-shirt COLOR AND STYLE (vary the color — not just navy/dark — try red, green, gray, white, yellow, etc.), facial hair (mustache, beard, or clean-shaved — NO single facial hair type should dominate). Each generation must be unique and never repeat the same combination. Do NOT default to the same t-shirt color or same facial hair across generations.
 
 [EXPRESSION] When not specified by the user, randomize from: happy, sad, angry, determined, or default (neutral). Keep it subtle — mild version of the emotion, not exaggerated.
 
