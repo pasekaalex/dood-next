@@ -6,30 +6,28 @@ import sharp from 'sharp';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 10 * 1000;
 
-const BASE_PROMPT = `[ANIMATION STYLE - ALL 18 REFERENCES] All reference images define the animation style. Study them collectively for: art aesthetic, line quality, color palette, shading, character proportions, grotesque/exaggerated features. The style is consistent across all refs — use that style.
+const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The style should match the reference images — NOT any specific TV show. Do not lean into or reference King of the Hill, Adventure Time, Bob's Burgers, or any other existing show. The reference images are the ONLY style guide.
 
-[FACE AND BODY STRUCTURE] Characters should have exaggerated, grotesque proportions: large head, small centered facial features, thick neck, wide/broad shoulders. Match this body type from the references — NOT a specific character's face from any single ref.
+[EYES - IMPORTANT] The character must have eyes matching the style in the reference images. Pay close attention to how eyes are drawn across all references — same eye shape, same iris style, same outline style, same relative size. Iris color should vary — randomize between blue, green, or brown when not specified by user.
 
-[EYES] Match the eye style from the references — same shape, outline, and relative size. Iris color varies: blue, green, or brown when not specified.
+[FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, wide/broad shoulders, nose, mouth, jawline. These structural features come from the reference images.
 
-[NO SHOW REFERENCE] Do NOT derive style from any specific animated series (King of the Hill, Bob's Burgers, etc.). The reference images are the SOLE style source.
+[NO SHOW REFERENCE] Do NOT derive style from any specific animated series. The reference images on this site are the sole style source.
 
-[USER INTENT] The user's prompt is the SOURCE OF TRUTH. ALL elements the user mentions must appear in the output. "guy with beer AND cigarette" = render BOTH.
+[CUSTOMIZABLE] Hair, mustache, beard, shirt/outfit, background/setting — vary based on user prompt or randomization.
 
-[SETTING] Default to RANDOMIZED suburban settings. If user specifies, follow it. Otherwise pick from: concrete garage, messy backyard with fence, dark basement, driveway, front porch, house with siding. Vary it.
+[USER INTENT] The user's prompt is the SOURCE OF TRUTH — ALL elements in the prompt must appear in the output. If the user says "guy with beer smoking cig", the output MUST show both a beer AND a cigarette. Do not drop, ignore, or partially render elements from the user's prompt. Every word in the prompt matters.
 
-[CHARACTER VARIETY] When not specified by user, RANDOMIZE:
-- Hair style/color (short, medium, long, curly, bald, etc.)
-- Hat (trucker cap, cowboy hat, beanie, or no hat)
-- T-shirt color (red, green, gray, white, yellow, navy — NOT always the same)
-- Facial hair (mustache, beard, or clean-shaven)
-- Expression (happy, sad, angry, determined, or default/neutral — subtle, not exaggerated)
+[SETTING] Default to a RANDOMIZED suburban background. If user specifies a setting, follow it. If not specified, pick from: concrete garage, messy backyard with fence, dark basement, driveway, front porch, house with siding. Vary it each time — do not default to the same background twice.
 
-Do NOT copy the specific character's face, beard, haircut, or outfit from any single reference image. Generate a FRESH, UNIQUE character each time.
+
+[CHARACTER VARIETY] When not specified, randomize ALL of the following: hair style/color, hat (trucker cap, cowboy hat, beanie, or none), t-shirt COLOR AND STYLE (vary the color — not just navy/dark — try red, green, gray, white, yellow, etc.), facial hair (mustache/beard/shaved). Each generation must be unique and never repeat the same combination. Do NOT default to the same t-shirt color across generations.
+
+[EXPRESSION] When not specified by the user, randomize from: happy, sad, angry, determined, or default (neutral). Keep it subtle — mild version of the emotion, not exaggerated.
+
+EXCEPTION — If the user's prompt describes an ANIMAL (dolphin, cat, dog, bear, fish, bird, etc.), do NOT add facial hair, mustache, or human-style facial hair. Animals get bare faces unless the user explicitly asks for it.
 
 Do NOT add props the user did not mention. If the user does not say "beer", do NOT add beer. If the user does not say "cigarette" or "smoking", do NOT add cigarettes. Props only appear if the user explicitly mentions them.
-
-EXCEPTION — If the user's prompt describes an ANIMAL (dolphin, cat, dog, bear, etc.), no facial hair unless user explicitly asks.
 
 User request:
 USER PROMPT HERE
@@ -52,13 +50,13 @@ async function resizeToBase64(buf: Buffer, maxWidth = 384): Promise<string> {
 function getAllRefImages(): { path: string; name: string }[] {
   const refDir = join(process.cwd(), 'public', 'pfp-refs');
   return [
+    { path: join(refDir, 'frontyard-blank.png'), name: 'frontyard-blank' },
     { path: join(refDir, 'angry.png'), name: 'angry' },
     { path: join(refDir, 'beach.png'), name: 'beach' },
     { path: join(refDir, 'car.png'), name: 'car' },
     { path: join(refDir, 'depressed.png'), name: 'depressed' },
     { path: join(refDir, 'determined.png'), name: 'determined' },
     { path: join(refDir, 'frontyard.png'), name: 'frontyard' },
-    { path: join(refDir, 'frontyard-blank.png'), name: 'frontyard-blank' },
     { path: join(refDir, 'frontyard-blonde.png'), name: 'frontyard-blonde' },
     { path: join(refDir, 'garage.png'), name: 'garage' },
     { path: join(refDir, 'garage-beer.png'), name: 'garage-beer' },
