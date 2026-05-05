@@ -62,24 +62,24 @@ export async function POST(req: NextRequest) {
   try {
     const ref = getRandomRefImage();
     const imageBuffer = readFileSync(ref.path);
-    const blob = new Blob([imageBuffer], { type: 'image/jpeg' });
+    const base64Image = imageBuffer.toString('base64');
     console.log('Reference image:', ref.name, '- Size:', blob.size, 'bytes');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
     console.log('Final prompt (first 200 chars):', fullPrompt.substring(0, 200));
 
-    const formData = new FormData();
-    formData.append('model', 'gpt-image-1');
-    formData.append('image', blob, ref.name);
-    formData.append('prompt', fullPrompt);
-
     const response = await fetch('https://api.openai.com/v1/images/edits', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${openaiApiKey}`,
+        'Content-Type': 'application/json',
       },
-      body: formData,
-    });
+      body: JSON.stringify({
+        model: 'gpt-image-1',
+        image: `data:image/jpeg;base64,${base64Image}`,
+        prompt: fullPrompt,
+        size: '1024x1024',
+      }),
 
     if (!response.ok) {
       const err = await response.text();
