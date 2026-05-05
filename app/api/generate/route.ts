@@ -93,7 +93,6 @@ export async function POST(req: NextRequest) {
         model: 'gpt-image-1',
         images: imageArray,
         prompt: fullPrompt,
-        action: 'edit',
         input_fidelity: 'high',
         quality: 'high',
         size: '1024x1024',
