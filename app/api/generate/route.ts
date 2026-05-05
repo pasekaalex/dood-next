@@ -37,7 +37,7 @@ function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';
 }
 
-async function resizeToBase64(buf: Buffer, maxWidth = 512): Promise<string> {
+async function resizeToBase64(buf: Buffer, maxWidth = 384): Promise<string> {
   const resized = await sharp(buf)
     .resize(maxWidth, maxWidth, { fit: 'inside', withoutEnlargement: true })
     .jpeg({ quality: 80 })
@@ -48,15 +48,24 @@ async function resizeToBase64(buf: Buffer, maxWidth = 512): Promise<string> {
 function getAllRefImages(): { path: string; name: string }[] {
   const slideshowDir = join(process.cwd(), 'public', 'slideshow');
   return [
-    { path: join(slideshowDir, 'slide-1.jpg'), name: 'slide-1.jpg' },
-    { path: join(slideshowDir, 'slide-2.jpg'), name: 'slide-2.jpg' },
-    { path: join(slideshowDir, 'slide-3.jpg'), name: 'slide-3.jpg' },
-    { path: join(slideshowDir, 'slide-4.jpg'), name: 'slide-4.jpg' },
-    { path: join(slideshowDir, 'slide-5.jpg'), name: 'slide-5.jpg' },
-    { path: join(slideshowDir, 'slide-6.jpg'), name: 'slide-6.jpg' },
-    { path: join(slideshowDir, 'slide-7.jpg'), name: 'slide-7.jpg' },
-    { path: join(slideshowDir, 'slide-8.jpg'), name: 'slide-8.jpg' },
-    { path: join(slideshowDir, 'slide-9.jpg'), name: 'slide-9.jpg' },
+    { path: join(slideshowDir, 'angry.jpg'), name: 'angry' },
+    { path: join(slideshowDir, 'beach.jpg'), name: 'beach' },
+    { path: join(slideshowDir, 'car.jpg'), name: 'car' },
+    { path: join(slideshowDir, 'depressed.jpg'), name: 'depressed' },
+    { path: join(slideshowDir, 'determined.jpg'), name: 'determined' },
+    { path: join(slideshowDir, 'frontyard.jpg'), name: 'frontyard' },
+    { path: join(slideshowDir, 'frontyard-blank.jpg'), name: 'frontyard-blank' },
+    { path: join(slideshowDir, 'frontyard-blonde.jpg'), name: 'frontyard-blonde' },
+    { path: join(slideshowDir, 'garage.jpg'), name: 'garage' },
+    { path: join(slideshowDir, 'garage-beer.jpg'), name: 'garage-beer' },
+    { path: join(slideshowDir, 'grill.jpg'), name: 'grill' },
+    { path: join(slideshowDir, 'happy.jpg'), name: 'happy' },
+    { path: join(slideshowDir, 'inside-beer.jpg'), name: 'inside-beer' },
+    { path: join(slideshowDir, 'sad.jpg'), name: 'sad' },
+    { path: join(slideshowDir, 'store.jpg'), name: 'store' },
+    { path: join(slideshowDir, 'yard.jpg'), name: 'yard' },
+    { path: join(slideshowDir, 'yard-grill.jpg'), name: 'yard-grill' },
+    { path: join(slideshowDir, 'yard-smoke.jpg'), name: 'yard-smoke' },
   ];
 }
 

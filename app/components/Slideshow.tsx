@@ -3,15 +3,24 @@
 import { useState, useEffect } from 'react';
 
 const SLIDES = [
-  '/slideshow/slide-1.jpg',
-  '/slideshow/slide-2.jpg',
-  '/slideshow/slide-3.jpg',
-  '/slideshow/slide-4.jpg',
-  '/slideshow/slide-5.jpg',
-  '/slideshow/slide-6.jpg',
-  '/slideshow/slide-7.jpg',
-  '/slideshow/slide-8.jpg',
-  '/slideshow/slide-9.jpg',
+  '/slideshow/angry.jpg',
+  '/slideshow/beach.jpg',
+  '/slideshow/car.jpg',
+  '/slideshow/depressed.jpg',
+  '/slideshow/determined.jpg',
+  '/slideshow/frontyard.jpg',
+  '/slideshow/frontyard-blank.jpg',
+  '/slideshow/frontyard-blonde.jpg',
+  '/slideshow/garage.jpg',
+  '/slideshow/garage-beer.jpg',
+  '/slideshow/grill.jpg',
+  '/slideshow/happy.jpg',
+  '/slideshow/inside-beer.jpg',
+  '/slideshow/sad.jpg',
+  '/slideshow/store.jpg',
+  '/slideshow/yard.jpg',
+  '/slideshow/yard-grill.jpg',
+  '/slideshow/yard-smoke.jpg',
 ];
 
 interface SlideshowProps {
