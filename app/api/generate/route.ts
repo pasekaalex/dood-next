@@ -6,16 +6,16 @@ import sharp from 'sharp';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `[Grounding] The subject's face, neck shape, head structure, and EYES must match Reference Image 1 exactly. Eyes must match the precise style: eye shape, iris size, pupil, eye outline, and eye placement from the template.
+const BASE_PROMPT = `[Style Reference] Reference Images 1-9 define the ANIMATION STYLE ONLY: art style, line quality, color palette, shading, character proportions, and visual aesthetic. Follow the style exactly.
 
-Use the remaining reference images for style and elements only.
+[Identity Grounding] Reference Image 1 sets the FACIAL STRUCTURE: face shape, eye shape/style, nose, mouth, jawline, neck. Match these features precisely.
 
-You may modify other elements (clothing, items held, background, expression, facial hair) based on the combined style from all reference images.
+[User Intent] The user's prompt is the PRIMARY creative direction — honor it fully. Do not override or ignore key descriptors like "ogre", "wizard", "viking", "zombie", etc. Interpret these creatively within the animation style.
 
-**Background setting:** Place the character in a suburban backyard scene — driveway, garage, fence, grass, lawn chairs, grill, or similar residential outdoor setting. Vary the background elements.
+[Setting] Default to suburban backyard (driveway, garage, fence, grass, lawn chairs, grill). UNLESS the user explicitly specifies a different setting (desert, beach, city, forest, etc.) — in that case, follow the user's setting.
 
-**Character variety:** Generate a UNIQUE character each time. Randomize these when not specified by the user:
-- Hair style and color (variety: short, medium, long, curly, straight, bald, etc.)
+[Character] Generate a UNIQUE character each time. Randomize when not specified:
+- Hair style and color (short, medium, long, curly, straight, bald, etc.)
 - Facial hair (mustache styles, beard, clean-shaven — vary it)
 - Hats or headwear (cap, cowboy hat, beanie, or no hat)
 - Shirt/outfit style and color
@@ -26,7 +26,7 @@ User request:
 USER PROMPT HERE
 
 Output:
-square 1:1 profile picture, centered waist-up character, facing camera, suburban backyard residential background.`;
+square 1:1 profile picture, centered waist-up character, facing camera.`;
 
 function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';
