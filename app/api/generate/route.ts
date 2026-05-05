@@ -5,19 +5,13 @@ import { join } from 'path';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `Like the reference image use overall crude flat cartoon style, character framing, awkward facial proportions, thick neck silhouette, thin black outlines, flat colors, and deadpan adult-animation mood.
-
-Randomize:
-skin tone, body type, neck width, face shape, mustache, hairstyle, eye color, facial hair, hat, shirt style, shirt color, outfit details, stains/accessories.
-
-Keep:
-flat 2D cartoon style, tiny dull eyes, thick neck, awkward centered face, deadpan expression, simple suburban background, no gradients, no realistic lighting.
+const BASE_PROMPT = `Like the reference image in the exact art style and lighting of the attached image.
 
 User scene:
 USER PROMPT HERE
 
 Output:
-square 1:1 profile picture, centered waist-up character, facing camera, simple background.`;
+square 1:1 profile picture, centered waist-up character, facing camera.`;
 
 function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';
@@ -74,8 +68,9 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: 'gpt-image-1',
-        image: `data:image/jpeg;base64,${base64Image}`,
+        images: [`data:image/jpeg;base64,${base64Image}`],
         prompt: fullPrompt,
+        quality: 'high',
         size: '1024x1024',
       }),
 
