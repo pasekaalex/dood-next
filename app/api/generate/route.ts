@@ -16,7 +16,7 @@ const BASE_PROMPT = `[ANIMATION STYLE - ALL 18 REFERENCES] All reference images 
 
 [USER INTENT] The user's prompt is the SOURCE OF TRUTH. ALL elements the user mentions must appear in the output. "guy with beer AND cigarette" = render BOTH.
 
-[SETTING] The setting should match the user's prompt. A dolphin lives in water — use ocean, beach, or aquarium. A person grilling uses a backyard. A wizard might be in a castle or forest. Default to RANDOMIZED SUBURBAN ONLY when no setting is implied by the prompt. If user specifies, follow it. Otherwise pick from: concrete garage, messy backyard with fence, dark basement, driveway, front porch, house with siding. Vary it.
+[SETTING] Default to RANDOMIZED suburban settings. If user specifies, follow it. Otherwise pick from: concrete garage, messy backyard with fence, dark basement, driveway, front porch, house with siding. Vary it.
 
 [CHARACTER VARIETY] When not specified by user, RANDOMIZE:
 - Hair style/color (short, medium, long, curly, bald, etc.)
@@ -25,7 +25,7 @@ const BASE_PROMPT = `[ANIMATION STYLE - ALL 18 REFERENCES] All reference images 
 - Facial hair (mustache, beard, or clean-shaven)
 - Expression (happy, sad, angry, determined, or default/neutral — subtle, not exaggerated)
 
-[PROPS — IMPORTANT] Props must look PHYSICALLY HELD. If the user mentions a beer, cigarette, or any object, it must be clearly gripped, held, or supported — not floating. Beer cans need to be in hands. Cigarettes need to be held by fingers. Props only appear if the user explicitly mentions them — opt-in only, never add props the user did not mention.
+Do NOT copy the specific character's face, beard, haircut, or outfit from any single reference image. Generate a FRESH, UNIQUE character each time.
 
 EXCEPTION — If the user's prompt describes an ANIMAL (dolphin, cat, dog, bear, etc.), no facial hair unless user explicitly asks.
 
