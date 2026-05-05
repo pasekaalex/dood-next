@@ -67,9 +67,9 @@ export async function POST(req: NextRequest) {
     const refs = getAllRefImages();
     const imageArray = refs.map(r => {
       const buf = readFileSync(r.path);
-      return buf.toString('base64');
+      return `data:image/jpeg;base64,${buf.toString('base64')}`;
     });
-    console.log('Sending', refs.length, 'reference images');
+    console.log('Sending', refs.length, 'reference images as data URLs');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
 
