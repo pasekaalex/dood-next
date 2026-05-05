@@ -21,7 +21,9 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 [SETTING] Default to a RANDOMIZED suburban background. If user specifies a setting, follow it. If not specified, pick from: concrete garage, messy backyard with fence, dark basement, driveway, front porch, house with siding. Vary it each time — do not default to the same background twice.
 
 
-[CHARACTER VARIETY] When not specified, randomize: hair style/color, facial hair (mustache/beard/shaved), hats (cap/cowboy/beanie/none), shirt/outfit. Each generation must be unique.
+[CHARACTER VARIETY] When not specified, randomize ALL of the following: hair style/color, hat (trucker cap, cowboy hat, beanie, or none), t-shirt style/color, facial hair (mustache/beard/shaved). Each generation must be unique and never repeat the same combination.
+
+[EXPRESSION] When not specified by the user, randomize the character's facial expression. Keep it SUBTLE — deadpan, slightly annoyed, vaguely determined, mild boredom, slight grimace. NO dramatic or exaggerated expressions. Vary it each time.
 
 EXCEPTION — If the user's prompt describes an ANIMAL (dolphin, cat, dog, bear, fish, bird, etc.), do NOT add facial hair, mustache, or human-style facial hair. Animals get bare faces unless the user explicitly asks for it.
 
