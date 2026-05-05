@@ -6,17 +6,20 @@ import sharp from 'sharp';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `[ANIMATION STYLE] ALL 9 reference images define the animation style. Use them collectively for: art style, line quality, color palette, shading, character proportions, visual aesthetic.
+const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The style should match the reference images — NOT any specific TV show. Do not lean into or reference King of the Hill, Adventure Time, Bob's Burgers, or any other existing show. The reference images are the ONLY style guide.
 
-[EYES - IMPORTANT] The character must have eyes matching the style in ALL reference images. Pay close attention to how eyes are drawn across ALL 9 refs — same eye shape, same iris style, same outline style, same relative size.
+[EYES - IMPORTANT] The character must have eyes matching the style in the reference images. Pay close attention to how eyes are drawn across all references — same eye shape, same iris style, same outline style, same relative size.
 
-[FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, nose, mouth, jawline. These structural features come from slide-1.
+[FACE AND BODY STRUCTURE] Reference Image 1 provides the face shape, head-to-body proportion (large head, small centered features), thick neck, nose, mouth, jawline. These structural features come from the reference images.
+
+[NO SHOW REFERENCE] Do NOT derive style from any specific animated series. The reference images on this site are the sole style source.
 
 [CUSTOMIZABLE] Hair, mustache, beard, shirt/outfit, background/setting — vary based on user prompt or randomization.
 
 [USER INTENT] The user's prompt guides the SCENE and CUSTOMIZABLE elements. Honor all creative descriptors (grilling, ogre, wizard, etc.).
 
 [SETTING] Default suburban backyard. If user specifies a different setting (desert, beach, etc.), follow it.
+
 
 [CHARACTER VARIETY] When not specified, randomize: hair style/color, facial hair (mustache/beard/shaved), hats (cap/cowboy/beanie/none), shirt/outfit. Each generation must be unique.
 
