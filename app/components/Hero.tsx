@@ -23,7 +23,7 @@ export default function Hero() {
             src="/logo-trim.png"
             alt="Dood's"
             style={{
-              maxHeight: '140px',
+              maxHeight: '105px',
               width: '90%',
               objectFit: 'contain',
             }}
@@ -47,7 +47,7 @@ export default function Hero() {
               }}
             >
               Buy
-              <img src="/logo-trim.png" alt="" style={{height: '30px', objectFit: 'contain'}} />
+              <img src="/logo-trim.png" alt="" style={{height: '22px', objectFit: 'contain'}} />
             </a>
           </div>
 
