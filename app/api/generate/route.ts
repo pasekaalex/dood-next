@@ -6,23 +6,24 @@ import sharp from 'sharp';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `[Identity Grounding] Reference Image 1 sets the FACIAL STRUCTURE and EYES: face shape, thick neck, small centered facial features in a large head, eyes (shape, size, iris, pupil, outline), nose, mouth, jawline. Match these features precisely. Skin tone may vary slightly.
+const BASE_PROMPT = `[CRITICAL IDENTITY RULE] Reference Image 1 provides the FACE that MUST APPEAR in every generation regardless of the user's prompt. The character in the output MUST have:
+- Same face shape as slide-1
+- Same eye shape, size, iris, pupil, outline as slide-1
+- Same nose, mouth, jawline as slide-1
+- Same thick neck structure as slide-1
+- Same head-to-body proportion as slide-1 (large head, small centered features)
 
-[Customizable] Hair, mustache, beard, shirt/outfit, and background/setting should be GENERATED FRESH for each prompt — do not copy these from any reference image. Only facial structure and eyes carry over.
+Do NOT generate a different face. The face from slide-1 is NON-NEGOTIABLE.
 
-[Style Reference] Reference Images 2-9 define the ANIMATION STYLE ONLY: art style, line quality, color palette, shading, character proportions, and visual aesthetic. Follow the style exactly.
+[Style Reference] Reference Images 1-9 define the ANIMATION STYLE: art style, line quality, color palette, shading, character proportions, visual aesthetic. Follow the style exactly.
 
-[User Intent] The user's prompt is the PRIMARY creative direction — honor it fully. Do not override or ignore key descriptors like "ogre", "wizard", "viking", "zombie", etc. Interpret these creatively within the animation style.
+[Customizable per prompt] Hair, mustache, beard, shirt/outfit, background/setting — these can and should vary based on user input or randomization.
 
-[Setting] Default to suburban backyard (driveway, garage, fence, grass, lawn chairs, grill). UNLESS the user explicitly specifies a different setting (desert, beach, city, forest, etc.) — in that case, follow the user's setting.
+[User Intent] The user's prompt guides the SCENE and CUSTOMIZABLE elements. Honor all creative descriptors (ogre, wizard, grilling, etc.).
 
-[Character] Generate a UNIQUE character each time. Randomize when not specified:
-- Hair style and color (short, medium, long, curly, straight, bald, etc.)
-- Facial hair (mustache styles, beard, clean-shaven — vary it)
-- Hats or headwear (cap, cowboy hat, beanie, or no hat)
-- Shirt/outfit style and color
+[Setting] Default suburban backyard (driveway, garage, fence, grass, lawn chairs, grill). If user specifies a different setting (desert, beach, city, etc.), follow it.
 
-Do NOT produce the same character twice. Each generation must be distinct.
+[Character Variety] When not specified, randomize: hair style/color, facial hair (mustache/beard/shaved), hats (cap/cowboy/beanie/none), shirt/outfit. Each generation must be a unique character.
 
 User request:
 USER PROMPT HERE
