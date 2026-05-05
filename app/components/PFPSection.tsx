@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const RATE_LIMIT_MS = 60 * 1000;
+const RATE_LIMIT_MS = 10 * 1000;
 const STORAGE_KEY = 'dood_last_gen';
 
 type State = 'idle' | 'loading' | 'done' | 'error';
@@ -124,12 +124,6 @@ export default function PFPSection({ onGenerated, onGeneratingChange }: Props) {
               🔄 Reset
             </button>
           </div>
-        )}
-
-        {timeLeft > 0 && state !== 'loading' && (
-          <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>
-            ⏳ Rate limited — try again in {formatTime(timeLeft)}
-          </p>
         )}
 
         {errorMsg && (
