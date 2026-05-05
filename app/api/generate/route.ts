@@ -110,9 +110,21 @@ export async function POST(req: NextRequest) {
     });
 
     if (!response.ok) {
-      const err = await response.text();
-      console.log('OpenAI error response:', err);
-      throw new Error(`OpenAI API error: ${err}`);
+      const errData = await response.text();
+      let errMsg = 'OpenAI API error';
+      try {
+        const parsed = JSON.parse(errData);
+        // Check for content policy violations
+        if (parsed.error?.type === 'content_policy_violation' || parsed.error?.type === 'invalid_request_error') {
+          errMsg = 'This prompt was flagged by our content filter. Try a different description — keep it family-friendly and avoid referencing specific characters, celebrities, or copyrighted content.';
+        } else {
+          errMsg = parsed.error?.message || errData;
+        }
+      } catch {
+        errMsg = errData;
+      }
+      console.log('OpenAI error:', errMsg);
+      throw new Error(errMsg);
     }
 
     const data = await response.json();
