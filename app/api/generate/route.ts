@@ -8,7 +8,7 @@ const RATE_LIMIT_MS = 10 * 1000;
 
 const BASE_PROMPT = `[ANIMATION STYLE - ALL 18 REFERENCES] All reference images define the animation style. Study them collectively for: art aesthetic, line quality, color palette, shading, character proportions, grotesque/exaggerated features. The style is consistent across all refs — use that style.
 
-[FACE AND BODY STRUCTURE] Characters should have exaggerated, grotesque proportions: large head, small centered facial features, thick neck, wide/broad shoulders. Match this body type from the references — NOT a specific character's face from any single ref.
+[FACE AND BODY STRUCTURE] Characters should have exaggerated, grotesque proportions: large head, VERY SMALL centered facial features (tiny eyes, small nose, small mouth — face should be a small fraction of the head), thick neck, wide/broad shoulders. The face must be SMALL — not normal human proportions. Match this body type from the references — NOT a specific character's face from any single ref.
 
 [EYES] Match the eye style from the references — same shape, outline, and relative size. Iris color varies: blue, green, or brown when not specified.
 
