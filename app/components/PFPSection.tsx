@@ -9,9 +9,10 @@ type State = 'idle' | 'loading' | 'done' | 'error';
 
 interface Props {
   onGenerated: (url: string) => void;
+  onGeneratingChange?: (generating: boolean) => void;
 }
 
-export default function PFPSection({ onGenerated }: Props) {
+export default function PFPSection({ onGenerated, onGeneratingChange }: Props) {
   const [prompt, setPrompt] = useState('');
   const [state, setState] = useState<State>('idle');
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -35,6 +36,7 @@ export default function PFPSection({ onGenerated }: Props) {
 
     setState('loading');
     setErrorMsg('');
+    onGeneratingChange?.(true);
     localStorage.setItem(STORAGE_KEY, Date.now().toString());
 
     const tick = setInterval(() => {
@@ -68,6 +70,7 @@ export default function PFPSection({ onGenerated }: Props) {
       setState('error');
     } finally {
       clearInterval(tick);
+      onGeneratingChange?.(false);
     }
   };
 
