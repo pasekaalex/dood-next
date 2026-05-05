@@ -4,7 +4,7 @@ import { join } from 'path';
 import sharp from 'sharp';
 
 const rateLimitMap = new Map<string, number>();
-const RATE_LIMIT_MS = 30 * 1000;
+const RATE_LIMIT_MS = 10 * 1000;
 
 const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The style should match the reference images — NOT any specific TV show. Do not lean into or reference King of the Hill, Adventure Time, Bob's Burgers, or any other existing show. The reference images are the ONLY style guide.
 
