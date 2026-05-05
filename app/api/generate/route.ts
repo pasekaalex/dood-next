@@ -7,8 +7,6 @@ const RATE_LIMIT_MS = 30 * 1000;
 
 const BASE_PROMPT = `Like the reference image use overall crude flat cartoon style, character framing, awkward facial proportions, thick neck silhouette, thin black outlines, flat colors, and deadpan adult-animation mood.
 
-Generate a new original character each time.
-
 Randomize:
 skin tone, body type, neck width, face shape, mustache, hairstyle, eye color, facial hair, hat, shirt style, shirt color, outfit details, stains/accessories.
 
