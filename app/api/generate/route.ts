@@ -5,7 +5,9 @@ import { join } from 'path';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `Use the reference image only for the overall crude flat cartoon style, character framing, awkward facial proportions, thick neck silhouette, thin black outlines, flat colors, and deadpan adult-animation mood.
+const BASE_PROMPT = `Use Image 1 as the structural reference (face, body shape, proportions). Use Images 2-9 as a style gallery (art style, colors, line work, mood).
+
+Maintain the facial structure and character layout from Image 1 while applying the collective crude cartoon aesthetic from the remaining images.
 
 Generate a new original character each time.
 
