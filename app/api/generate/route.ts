@@ -25,7 +25,7 @@ const BASE_PROMPT = `[ANIMATION STYLE - ALL 18 REFERENCES] All reference images 
 - Facial hair (mustache, beard, or clean-shaven)
 - Expression (happy, sad, angry, determined, or default/neutral — subtle, not exaggerated)
 
-Do NOT add props the user did not mention. If the user does not say "beer", do NOT add beer. If the user does not say "cigarette" or "smoking", do NOT add cigarettes. Props are opt-in, not randomized.
+[PROPS — IMPORTANT] Props must look PHYSICALLY HELD. If the user mentions a beer, cigarette, or any object, it must be clearly gripped, held, or supported — not floating. Beer cans need to be in hands. Cigarettes need to be held by fingers. Objects must have visible contact with whatever holds them. Props only appear if the user explicitly mentions them — opt-in only, never add props the user did not mention.
 
 EXCEPTION — If the user's prompt describes an ANIMAL (dolphin, cat, dog, bear, etc.), no facial hair unless user explicitly asks.
 
