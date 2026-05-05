@@ -16,7 +16,7 @@ const BASE_PROMPT = `[ANIMATION STYLE] Follow the reference images EXACTLY. The 
 
 [CUSTOMIZABLE] Hair, mustache, beard, shirt/outfit, background/setting — vary based on user prompt or randomization.
 
-[USER INTENT] The user's prompt guides the SCENE and CUSTOMIZABLE elements. Honor all creative descriptors (grilling, ogre, wizard, etc.).
+[USER INTENT] The user's prompt is the SOURCE OF TRUTH — ALL elements in the prompt must appear in the output. If the user says "guy with beer smoking cig", the output MUST show both a beer AND a cigarette. Do not drop, ignore, or partially render elements from the user's prompt. Every word in the prompt matters.
 
 [SETTING] Default suburban backyard. If user specifies a different setting (desert, beach, etc.), follow it.
 
