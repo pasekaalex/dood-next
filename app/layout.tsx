@@ -16,10 +16,10 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "$DOOD — Just a Dood Being a Dood",
+  title: "Dood Creator",
   description: "The official $DOOD token site. Buy, trade, and generate your own DOOD PFP on Solana.",
   openGraph: {
-    title: "$DOOD — Just a Dood Being a Dood",
+    title: "Dood Creator",
     description: "Generate your own DOOD PFP. AI-powered on Solana.",
     images: [{
       url: "https://doodpfp.lol/logo.png",
