@@ -65,10 +65,9 @@ export async function POST(req: NextRequest) {
 
   try {
     const refs = getAllRefImages();
-    // Test with just first image first
     const firstBuf = readFileSync(refs[0].path);
-    const imageArray = [{ b64_json: firstBuf.toString('base64') }];
-    console.log('Sending 1 reference image (testing single first)');
+    const singleImage = firstBuf.toString('base64');
+    console.log('Sending single image using `image` field (not images)');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
 
@@ -80,7 +79,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: 'gpt-image-1',
-        images: imageArray,
+        image: singleImage,
         prompt: fullPrompt,
         quality: 'high',
         size: '1024x1024',
