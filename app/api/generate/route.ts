@@ -5,13 +5,21 @@ import { join } from 'path';
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_MS = 30 * 1000;
 
-const BASE_PROMPT = `Like the reference images in the exact art style and lighting of the attached images.
+const BASE_PROMPT = `Use the reference image only for the overall crude flat cartoon style, character framing, awkward facial proportions, thick neck silhouette, thin black outlines, flat colors, and deadpan adult-animation mood.
+
+Generate a new original character each time.
+
+Randomize:
+skin tone, body type, neck width, face shape, mustache, hairstyle, eye color, facial hair, hat, shirt style, shirt color, outfit details, stains/accessories.
+
+Keep:
+flat 2D cartoon style, tiny dull eyes, thick neck, awkward centered face, deadpan expression, simple suburban background, no gradients, no realistic lighting.
 
 User scene:
 USER PROMPT HERE
 
 Output:
-square 1:1 profile picture, centered waist-up character, facing camera.`;
+square 1:1 profile picture, centered waist-up character, facing camera, simple background.`;
 
 function getClientIP(req: NextRequest): string {
   return req.headers.get('x-forwarded-for')?.split(',')?.[0]?.trim() ?? 'unknown';

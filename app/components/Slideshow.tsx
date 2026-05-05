@@ -25,7 +25,7 @@ export default function Slideshow({ generatedImage }: SlideshowProps) {
     if (generatedImage) return;
     const timer = setInterval(() => {
       setIndex(i => (i + 1) % SLIDES.length);
-    }, 1500);
+    }, 3000);
     return () => clearInterval(timer);
   }, [generatedImage]);
 
@@ -57,7 +57,7 @@ export default function Slideshow({ generatedImage }: SlideshowProps) {
             key={src}
             src={src}
             alt={`DOOD ${i + 1}`}
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1500"
             style={{ opacity: i === index ? 1 : 0 }}
           />
         ))}

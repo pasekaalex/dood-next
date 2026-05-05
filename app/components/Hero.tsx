@@ -47,7 +47,7 @@ export default function Hero() {
               }}
             >
               Buy
-              <img src="/logo.png" alt="" style={{height: '24px', objectFit: 'contain'}} />
+              <img src="/logo.png" alt="" style={{height: '30px', objectFit: 'contain'}} />
             </a>
           </div>
 
