@@ -65,9 +65,12 @@ export async function POST(req: NextRequest) {
 
   try {
     const refs = getAllRefImages();
-    const firstBuf = readFileSync(refs[0].path);
-    const singleImage = firstBuf.toString('base64');
-    console.log('Sending single image using `image` field (not images)');
+    // Try b64_json format per OpenAI docs
+    const imageArray = [refs[0], refs[1], refs[2]].map(r => {
+      const buf = readFileSync(r.path);
+      return { b64_json: buf.toString('base64') };
+    });
+    console.log('Sending 3 images as b64_json objects');
 
     const fullPrompt = BASE_PROMPT.replace('USER PROMPT HERE', userPrompt.trim());
 
@@ -79,7 +82,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: 'gpt-image-1',
-        image: singleImage,
+        images: imageArray,
         prompt: fullPrompt,
         quality: 'high',
         size: '1024x1024',
