@@ -19,6 +19,8 @@ export default function PFPSection({ onGenerated, onGeneratingChange }: Props) {
   const [errorMsg, setErrorMsg] = useState('');
   const [timeLeft, setTimeLeft] = useState(0);
 
+  const MAINTENANCE_MODE = true;
+
   const checkRateLimit = () => {
     const last = localStorage.getItem(STORAGE_KEY);
     if (!last) return true;
@@ -82,54 +84,62 @@ export default function PFPSection({ onGenerated, onGeneratingChange }: Props) {
       <div className="w-full max-w-sm mx-auto flex flex-col items-center gap-2">
 
         <h2 className="text-center text-2xl md:text-3xl font-black mb-0 w-full" style={{fontFamily: 'var(--font-bangers), cursive', letterSpacing: '3px', color: '#ffffff', textShadow: '3px 3px 0 var(--primary), -1px -1px 0 var(--primary), 1px -1px 0 var(--primary), -1px 1px 0 var(--primary)'}}>
-          CREATE UR DOOD
+          {MAINTENANCE_MODE ? '⛔ MAINTENANCE' : 'CREATE UR DOOD'}
         </h2>
 
-        <textarea
-          value={prompt}
-          onChange={e => setPrompt(e.target.value)}
-          placeholder="Describe your DOOD... a dude grilling, a chill dude with shades, a cowboy at a cookout..."
-          rows={2}
-          className="w-full rounded-xl resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
-          style={{border: '3px solid var(--primary)', color: '#1A1A2E', background: '#ffffff', fontSize: '1.1rem', lineHeight: '1.6', textAlign: 'center', padding: '12px', boxShadow: '4px 4px 0 var(--primary)'}}
-          onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
-        />
-
-        <button
-          onClick={handleGenerate}
-          disabled={!canGenerate}
-          className="rounded-xl font-bold cursor-pointer transition-all hover:brightness-105"
-          style={{
-            background: canGenerate ? 'var(--primary)' : '#999',
-            color: 'white',
-            fontSize: '1.2rem',
-            padding: '10px 40px',
-            boxShadow: 'none',
-            opacity: state === 'loading' ? 0.7 : 1,
-            letterSpacing: '0.5px',
-          }}>
-          {state === 'loading' ? '⏳ Generating...' : 'Generate DOOD'}
-        </button>
-
-        {state === 'done' && imageUrl && (
-          <div className="flex gap-3">
-            <a href={imageUrl} download="dood-pfp.png"
-              className="px-6 py-3 rounded-xl font-bold text-sm"
-              style={{background: 'var(--secondary)', color: '#1A1A2E', boxShadow: '0 5px 0 #E6B800', minWidth: '120px', textAlign: 'center'}}>
-              ⬇️ Save
-            </a>
-            <button onClick={() => { setState('idle'); setImageUrl(null); setPrompt(''); }}
-              className="px-6 py-3 rounded-xl font-bold text-sm"
-              style={{background: '#666', color: 'white', boxShadow: '0 5px 0 #333', minWidth: '120px', textAlign: 'center'}}>
-              🔄 Reset
-            </button>
+        {MAINTENANCE_MODE ? (
+          <div className="w-full text-center py-8 px-4 rounded-xl" style={{background: '#1A1A2E', border: '3px solid var(--primary)'}}>
+            <p className="text-white font-bold text-lg mb-2">🚧 Image generation is paused</p>
+            <p className="text-gray-400 text-sm">Check back soon! We're making improvements.</p>
           </div>
-        )}
+        ) : (
+          <>
+            <textarea
+              value={prompt}
+              onChange={e => setPrompt(e.target.value)}
+              placeholder="Describe your DOOD... a dude grilling, a chill dude with shades, a cowboy at a cookout..."
+              rows={2}
+              className="w-full rounded-xl resize-none outline-none font-semibold transition-colors leading-relaxed text-center"
+              style={{border: '3px solid var(--primary)', color: '#1A1A2E', background: '#ffffff', fontSize: '1.1rem', lineHeight: '1.6', textAlign: 'center', padding: '12px', boxShadow: '4px 4px 0 var(--primary)'}}
+              onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && canGenerate) { e.preventDefault(); handleGenerate(); } }}
+            />
 
-        {errorMsg && (
-          <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>⚠️ {errorMsg}</p>
-        )}
+            <button
+              onClick={handleGenerate}
+              disabled={!canGenerate}
+              className="rounded-xl font-bold cursor-pointer transition-all hover:brightness-105"
+              style={{
+                background: canGenerate ? 'var(--primary)' : '#999',
+                color: 'white',
+                fontSize: '1.2rem',
+                padding: '10px 40px',
+                boxShadow: 'none',
+                opacity: state === 'loading' ? 0.7 : 1,
+                letterSpacing: '0.5px',
+              }}>
+              {state === 'loading' ? '⏳ Generating...' : 'Generate DOOD'}
+            </button>
 
+            {state === 'done' && imageUrl && (
+              <div className="flex gap-3">
+                <a href={imageUrl} download="dood-pfp.png"
+                  className="px-6 py-3 rounded-xl font-bold text-sm"
+                  style={{background: 'var(--secondary)', color: '#1A1A2E', boxShadow: '0 5px 0 #E6B800', minWidth: '120px', textAlign: 'center'}}>
+                  ⬇️ Save
+                </a>
+                <button onClick={() => { setState('idle'); setImageUrl(null); setPrompt(''); }}
+                  className="px-6 py-3 rounded-xl font-bold text-sm"
+                  style={{background: '#666', color: 'white', boxShadow: '0 5px 0 #333', minWidth: '120px', textAlign: 'center'}}>
+                  🔄 Reset
+                </button>
+              </div>
+            )}
+
+            {errorMsg && (
+              <p className="text-xs text-center font-bold w-full" style={{color: 'var(--danger)'}}>⚠️ {errorMsg}</p>
+            )}
+          </>
+        )}
 
       </div>
     </section>
