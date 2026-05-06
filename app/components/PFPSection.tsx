@@ -19,7 +19,7 @@ export default function PFPSection({ onGenerated, onGeneratingChange }: Props) {
   const [errorMsg, setErrorMsg] = useState('');
   const [timeLeft, setTimeLeft] = useState(0);
 
-  const MAINTENANCE_MODE = false;
+  const MAINTENANCE_MODE = true;
 
   const checkRateLimit = () => {
     const last = localStorage.getItem(STORAGE_KEY);
