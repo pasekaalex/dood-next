@@ -46,23 +46,8 @@ function getAllRefImages(): { path: string; name: string }[] {
   const refDir = join(process.cwd(), 'public', 'pfp-refs');
   return [
     { path: join(refDir, 'frontyard-blank.png'), name: 'frontyard-blank' },
-    { path: join(refDir, 'angry.png'), name: 'angry' },
     { path: join(refDir, 'beach.png'), name: 'beach' },
-    { path: join(refDir, 'car.png'), name: 'car' },
-    { path: join(refDir, 'depressed.png'), name: 'depressed' },
-    { path: join(refDir, 'determined.png'), name: 'determined' },
-    { path: join(refDir, 'frontyard.png'), name: 'frontyard' },
-    { path: join(refDir, 'frontyard-blonde.png'), name: 'frontyard-blonde' },
-    { path: join(refDir, 'garage.png'), name: 'garage' },
-    { path: join(refDir, 'garage-beer.png'), name: 'garage-beer' },
-    { path: join(refDir, 'grill.png'), name: 'grill' },
-    { path: join(refDir, 'happy.png'), name: 'happy' },
-    { path: join(refDir, 'inside-beer.png'), name: 'inside-beer' },
-    { path: join(refDir, 'sad.png'), name: 'sad' },
-    { path: join(refDir, 'store.png'), name: 'store' },
     { path: join(refDir, 'yard.png'), name: 'yard' },
-    { path: join(refDir, 'yard-grill.png'), name: 'yard-grill' },
-    { path: join(refDir, 'yard-smoke.png'), name: 'yard-smoke' },
   ];
 }
 
