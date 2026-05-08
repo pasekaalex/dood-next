@@ -27,6 +27,18 @@ export default function Hero() {
     <section className="flex flex-col items-center justify-center text-center px-4 py-6">
       <div className="w-full max-w-lg mx-auto flex flex-col items-center gap-5">
         
+        {/* Angel Image above logo */}
+        <img
+          src="/angel.png"
+          alt="Angel"
+          className="animate-float"
+          style={{
+            maxHeight: '100px',
+            width: 'auto',
+            objectFit: 'contain',
+          }}
+        />
+
         {/* Interactive Logo */}
         <div className="relative">
           <img
