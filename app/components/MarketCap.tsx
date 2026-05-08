@@ -122,7 +122,7 @@ export default function MarketCap() {
                   className="text-4xl font-black" 
                   style={{
                     fontFamily: 'var(--font-bangers), cursive', 
-                    color: direction === 'up' ? '#22c55e' : direction === 'down' ? '#ef4444' : 'var(--text)', 
+                    color: direction === 'up' ? '#22c55e' : direction === 'down' ? '#ef4444' : '#C4953A', 
                     letterSpacing: '2px',
                     textShadow: '2px 2px 0 var(--secondary)',
                   }}
