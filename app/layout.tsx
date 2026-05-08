@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     title: "Dood",
     description: "Dood on Solana",
     images: [{
-      url: "https://doodpfp.lol/angel.png",
+      url: "https://doodpfp.lol/logo-trim.png",
       width: 512,
       height: 512,
     }],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://doodpfp.lol/angel.png"],
+    images: ["https://doodpfp.lol/logo-trim.png"],
   },
 };
 
