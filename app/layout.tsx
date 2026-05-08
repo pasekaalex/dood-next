@@ -16,11 +16,11 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Dood Creator",
-  description: "The official $DOOD token site. Buy, trade, and generate your own DOOD PFP on Solana.",
+  title: "$DOOD — Just a dood being a dood",
+  description: "The official $DOOD token on Solana. A community-driven memecoin with wholesome vibes.",
   openGraph: {
-    title: "Dood Creator",
-    description: "Generate your own DOOD PFP. AI-powered on Solana.",
+    title: "$DOOD — Just a dood being a dood",
+    description: "The official $DOOD token on Solana. A community-driven memecoin with wholesome vibes.",
     images: [{
       url: "https://doodpfp.lol/logo.png",
       width: 512,
@@ -40,7 +40,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${bangers.variable} ${nunito.variable}`}>
-      <body className="min-h-screen flex flex-col antialiased">{children}</body>
+      <body className="min-h-screen flex flex-col antialiased">
+        {children}
+        <audio id="jazz-bg" src="/dood-jazz.mp3" autoPlay loop muted />
+      </body>
     </html>
   );
 }

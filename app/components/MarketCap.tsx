@@ -33,8 +33,16 @@ export default function MarketCap() {
   return (
     <div className="flex justify-center py-2">
       {marketCap && (
-        <div className="rounded-xl px-6 py-3" style={{background: 'var(--secondary)', border: '3px solid var(--primary)', minWidth: '180px', display: 'flex', justifyContent: 'center'}}>
-          <span className="font-bold text-sm" style={{fontFamily: 'var(--font-bangers), cursive', color: '#1A1A2E', letterSpacing: '1px', textAlign: 'center'}}>Market Cap: {marketCap}</span>
+        <div className="rounded-xl px-6 py-3 animate-fade-in" style={{
+          background: 'var(--surface)',
+          border: '2px solid var(--card-border)',
+          minWidth: '180px',
+          display: 'flex',
+          justifyContent: 'center'
+        }}>
+          <span className="font-bold text-sm" style={{fontFamily: 'var(--font-bangers), cursive', color: 'var(--text)', letterSpacing: '1px', textAlign: 'center'}}>
+            Market Cap: {marketCap}
+          </span>
         </div>
       )}
     </div>

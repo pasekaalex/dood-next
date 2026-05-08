@@ -1,24 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Hero from './components/Hero';
-import PFPSection from './components/PFPSection';
 import Community from './components/Community';
-import Slideshow from './components/Slideshow';
 import MarketCap from './components/MarketCap';
 
+const CA = '4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
+
 export default function Home() {
-  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [audioStarted, setAudioStarted] = useState(false);
+
+  useEffect(() => {
+    const audio = document.getElementById('jazz-bg') as HTMLAudioElement;
+    if (audio && !audioStarted) {
+      audio.volume = 0.15;
+      audio.play().catch(() => {});
+      setAudioStarted(true);
+    }
+  }, [audioStarted]);
 
   return (
     <main className="flex flex-col items-center min-h-screen">
-      <div className="w-full max-w-xl mx-auto flex flex-col gap-1" style={{paddingBottom: '15px'}}>
+      <div className="w-full max-w-xl mx-auto flex flex-col gap-6" style={{paddingBottom: '40px'}}>
         <Hero />
-        <Slideshow generatedImage={generatedImage} isLoading={isGenerating} />
-        <PFPSection onGenerated={setGeneratedImage} onGeneratingChange={setIsGenerating} />
         <MarketCap />
         <Community />
+        <div className="text-center" style={{marginTop: '20px'}}>
+          <p className="text-sm" style={{color: 'var(--text-light)', fontFamily: 'var(--font-nunito), sans-serif'}}>
+            Just a dood being a dood 🦕
+          </p>
+        </div>
       </div>
     </main>
   );

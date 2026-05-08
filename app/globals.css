@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #FF6B35;
-  --secondary: #FFD23F;
-  --accent: #3DFF7F;
-  --background: #1A1A2E;
-  --surface: #16213E;
-  --text: #1A1A2E;
-  --text-light: #FFFFFF;
-  --danger: #FF3366;
+  --primary: #F5E6D3;
+  --secondary: #E8D4BE;
+  --accent: #D4A574;
+  --background: #FDF8F3;
+  --surface: #F9EFE6;
+  --text: #5C4033;
+  --text-light: #8B7355;
+  --danger: #C45C4B;
   --card-bg: #FFFFFF;
+  --card-border: #E8D4BE;
+  --btn-primary: #D4A574;
+  --btn-primary-shadow: #A67C52;
 }
 
 @theme inline {
@@ -22,78 +25,55 @@
   --color-text-light: var(--text-light);
   --color-danger: var(--danger);
   --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-btn-primary: var(--btn-primary);
+  --color-btn-shadow: var(--btn-primary-shadow);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: url('/cloudshd.png') center center / cover no-repeat fixed;
-  background-attachment: scroll;
+  background: linear-gradient(180deg, #FDF8F3 0%, #F9EFE6 50%, #F5E6D3 100%);
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-@media (max-width: 768px) {
-  body {
-    background: url('/cloudshd.png') center top / auto 100vh no-repeat;
-    background-attachment: scroll;
-  }
-}
-
-/* Cartoon background shapes */
+/* Keep sky background for warmth */
 body::before {
   content: '';
   position: fixed;
-  top: -200px;
-  right: -200px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255,107,53,0.2) 0%, transparent 70%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/cloudshd.png') center center / cover no-repeat fixed;
+  opacity: 0.3;
   pointer-events: none;
   z-index: 0;
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  bottom: -200px;
-  left: -200px;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(255,210,63,0.25) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Confetti dots background */
-.bg-dots {
-  background-image: radial-gradient(circle, rgba(255,107,53,0.15) 2px, transparent 2px);
-  background-size: 40px 40px;
-}
-
-/* Override text color for light body background */
-body {
-  color: #1A1A2E;
+main {
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-6px); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(255, 107, 53, 0.6); }
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
 }
 
-@keyframes bounce-in {
-  0% { transform: scale(0.8); opacity: 0; }
-  60% { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-float { animation: float 3s ease-in-out infinite; }
-.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-.animate-bounce-in { animation: bounce-in 0.5s ease-out; }
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
+.animate-fade-in { animation: fade-in 0.6s ease-out; }
