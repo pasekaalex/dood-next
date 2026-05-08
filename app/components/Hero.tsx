@@ -33,7 +33,7 @@ export default function Hero() {
           alt="Angel"
           className="animate-float"
           style={{
-            maxHeight: '100px',
+            maxHeight: '400px',
             width: 'auto',
             objectFit: 'contain',
           }}
