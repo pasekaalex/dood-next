@@ -18,7 +18,7 @@ export default function Home() {
   }, [audioStarted]);
 
   return (
-    <main className="flex flex-col items-center min-h-screen">
+    <main className="flex flex-col items-center justify-center min-h-screen">
       <div className="w-full max-w-xl mx-auto flex flex-col gap-8" style={{paddingBottom: '60px'}}>
         <Hero />
         <MarketCap />
