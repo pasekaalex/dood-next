@@ -13,10 +13,12 @@ function formatMC(n: number): string {
 
 export default function MarketCap() {
   const [marketCap, setMarketCap] = useState<string | null>(null);
-  const [prevMC, setPrevMC] = useState<string | null>(null);
   const [direction, setDirection] = useState<'up' | 'down' | null>(null);
-  const [bounce, setBounce] = useState(false);
+  const [pulse, setPulse] = useState(false);
+  const [shake, setShake] = useState(false);
+  const prevRef = useRef<number>(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const countRef = useRef(0);
 
   useEffect(() => {
     const fetchMC = () => {
@@ -26,68 +28,121 @@ export default function MarketCap() {
         const mcRaw = parseFloat(p.marketCap || p.info?.marketCap || '0');
         const liquidity = parseFloat(p.liquidity?.usd || '0');
         const mc = mcRaw > 0 ? mcRaw : liquidity * 5;
-        const formatted = formatMC(mc);
         
-        setPrevMC(marketCap);
-        if (marketCap && formatted !== marketCap) {
-          const prev = parseFloat(marketCap.replace(/[$MBK]/g, ''));
-          const curr = parseFloat(formatted.replace(/[$MBK]/g, ''));
-          if (!isNaN(prev) && !isNaN(curr)) {
-            setDirection(curr > prev ? 'up' : 'down');
-            setBounce(true);
-            setTimeout(() => {
-              setDirection(null);
-              setBounce(false);
-            }, 600);
+        if (prevRef.current > 0 && mc !== prevRef.current) {
+          const isUp = mc > prevRef.current;
+          setDirection(isUp ? 'up' : 'down');
+          setPulse(true);
+          setShake(true);
+          countRef.current++;
+          
+          // Every 5 changes, do a bigger animation
+          if (countRef.current % 5 === 0) {
+            setTimeout(() => setShake(true), 100);
           }
+          
+          setTimeout(() => {
+            setDirection(null);
+            setPulse(false);
+            setShake(false);
+          }, 800);
         }
-        setMarketCap(formatted);
+        prevRef.current = mc;
+        setMarketCap(formatMC(mc));
       }).catch(() => {});
     };
     fetchMC();
-    intervalRef.current = setInterval(fetchMC, 5000);
+    intervalRef.current = setInterval(fetchMC, 3000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [marketCap]);
+  }, []);
 
   return (
-    <div className="flex justify-center py-3">
+    <div className="flex justify-center py-4">
       {marketCap && (
         <div 
-          className={`rounded-2xl px-8 py-4 ${bounce ? 'animate-bounce-in' : ''}`}
+          className="relative"
           style={{
-            background: 'linear-gradient(135deg, var(--surface) 0%, var(--primary) 100%)',
-            border: '3px solid var(--accent)',
-            minWidth: '220px',
-            display: 'flex',
-            justifyContent: 'center',
-            boxShadow: '0 6px 0 var(--btn-primary-shadow)',
-            transform: bounce ? 'scale(1.05)' : 'scale(1)',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+            transform: shake ? 'translateX(-3px)' : pulse ? 'scale(1.08)' : 'scale(1)',
+            transition: 'transform 0.15s ease',
           }}
         >
-          <div className="flex flex-col items-center gap-1">
-            <span 
-              className="text-xs font-bold uppercase tracking-wider" 
-              style={{fontFamily: 'var(--font-bangers), cursive', color: 'var(--text-light)', letterSpacing: '2px'}}
-            >
-              Market Cap
-            </span>
-            <div className="flex items-center gap-2">
-              {direction === 'up' && <span className="text-lg">🚀</span>}
-              {direction === 'down' && <span className="text-lg">📉</span>}
-              <span 
-                className="text-2xl font-bold" 
+          {/* Glow effect based on direction */}
+          {direction && (
+            <div 
+              className="absolute inset-0 rounded-3xl -z-10"
+              style={{
+                background: direction === 'up' 
+                  ? 'radial-gradient(circle, rgba(34, 197, 94, 0.4) 0%, transparent 70%)' 
+                  : 'radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, transparent 70%)',
+                filter: 'blur(15px)',
+              }}
+            />
+          )}
+          
+          <div 
+            className={`rounded-3xl px-10 py-5 ${pulse ? 'animate-bounce-in' : ''}`}
+            style={{
+              background: 'linear-gradient(145deg, var(--surface) 0%, var(--primary) 100%)',
+              border: `4px solid ${direction === 'up' ? '#22c55e' : direction === 'down' ? '#ef4444' : 'var(--accent)'}`,
+              minWidth: '240px',
+              display: 'flex',
+              justifyContent: 'center',
+              boxShadow: `0 8px 0 var(--btn-primary-shadow), ${direction === 'up' ? '0 0 30px rgba(34, 197, 94, 0.3)' : direction === 'down' ? '0 0 30px rgba(239, 68, 68, 0.3)' : 'none'}`,
+            }}
+          >
+            <div className="flex flex-col items-center gap-2">
+              {/* Animated label */}
+              <div className="relative">
+                <span 
+                  className="text-sm font-bold uppercase tracking-widest" 
+                  style={{fontFamily: 'var(--font-bangers), cursive', color: 'var(--text-light)', letterSpacing: '3px'}}
+                >
+                  Market Cap
+                </span>
+                {direction && (
+                  <span 
+                    className="absolute -right-8 top-1/2 -translate-y-1/2 text-lg animate-pulse"
+                  >
+                    {direction === 'up' ? '📈' : '📉'}
+                  </span>
+                )}
+              </div>
+              
+              {/* Big animated number */}
+              <div 
+                className="flex items-center gap-3"
                 style={{
-                  fontFamily: 'var(--font-bangers), cursive', 
-                  color: 'var(--text)', 
-                  letterSpacing: '1px',
-                  textShadow: direction === 'up' ? '0 0 10px rgba(22, 163, 74, 0.5)' : direction === 'down' ? '0 0 10px rgba(220, 38, 38, 0.5)' : 'none',
+                  transform: pulse ? 'scale(1.1)' : 'scale(1)',
+                  transition: 'transform 0.2s ease',
                 }}
               >
-                {marketCap}
-              </span>
+                <span 
+                  className="text-4xl font-black" 
+                  style={{
+                    fontFamily: 'var(--font-bangers), cursive', 
+                    color: direction === 'up' ? '#22c55e' : direction === 'down' ? '#ef4444' : 'var(--text)', 
+                    letterSpacing: '2px',
+                    textShadow: '2px 2px 0 var(--secondary)',
+                  }}
+                >
+                  {marketCap}
+                </span>
+              </div>
+              
+              {/* Direction indicator bar */}
+              {direction && (
+                <div 
+                  className="h-1.5 rounded-full w-full mt-1 animate-pulse"
+                  style={{
+                    background: direction === 'up' 
+                      ? 'linear-gradient(90deg, #22c55e, #4ade80)' 
+                      : 'linear-gradient(90deg, #ef4444, #f87171)',
+                    minWidth: '120px',
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>
