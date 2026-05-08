@@ -17,19 +17,19 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: "Dood",
-  description: "The official Dood token on Solana. A community-driven memecoin with wholesome vibes.",
+  description: "Dood on Solana",
   openGraph: {
     title: "Dood",
-    description: "The official Dood token on Solana. A community-driven memecoin with wholesome vibes.",
+    description: "Dood on Solana",
     images: [{
-      url: "https://doodpfp.lol/logo.png",
+      url: "https://doodpfp.lol/angel.png",
       width: 512,
       height: 512,
     }],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://doodpfp.lol/logo.png"],
+    images: ["https://doodpfp.lol/angel.png"],
   },
 };
 
