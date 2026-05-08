@@ -36,7 +36,7 @@ export default function Hero() {
           letterSpacing: '3px',
           textShadow: '2px 2px 0 var(--secondary)',
         }}>
-          $DOOD
+          Dood
         </h1>
 
         <p className="text-base animate-fade-in" style={{
