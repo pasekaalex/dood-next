@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 const API = 'https://api.dexscreener.com/latest/dex/tokens/4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
+const DEXSCREENER_URL = 'https://dexscreener.com/solana/fr2azeueszdfrhye41xldfxmuzjzlad74u88142tc7pf';
 
 function formatMC(n: number): string {
   if (n >= 1e9) return '$' + (n / 1e9).toFixed(2) + 'B';
@@ -36,7 +37,6 @@ export default function MarketCap() {
           setShake(true);
           countRef.current++;
           
-          // Every 5 changes, do a bigger animation
           if (countRef.current % 5 === 0) {
             setTimeout(() => setShake(true), 100);
           }
@@ -61,14 +61,16 @@ export default function MarketCap() {
   return (
     <div className="flex justify-center py-4">
       {marketCap && (
-        <div 
-          className="relative"
+        <a 
+          href={DEXSCREENER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative no-underline transition-transform hover:scale-105 active:scale-95 cursor-pointer"
           style={{
             transform: shake ? 'translateX(-3px)' : pulse ? 'scale(1.08)' : 'scale(1)',
             transition: 'transform 0.15s ease',
           }}
         >
-          {/* Glow effect based on direction */}
           {direction && (
             <div 
               className="absolute inset-0 rounded-3xl -z-10"
@@ -93,7 +95,6 @@ export default function MarketCap() {
             }}
           >
             <div className="flex flex-col items-center gap-2">
-              {/* Animated label */}
               <div className="relative">
                 <span 
                   className="text-sm font-bold uppercase tracking-widest" 
@@ -110,7 +111,6 @@ export default function MarketCap() {
                 )}
               </div>
               
-              {/* Big animated number */}
               <div 
                 className="flex items-center gap-3"
                 style={{
@@ -131,7 +131,6 @@ export default function MarketCap() {
                 </span>
               </div>
               
-              {/* Direction indicator bar */}
               {direction && (
                 <div 
                   className="h-1.5 rounded-full w-full mt-1 animate-pulse"
@@ -145,7 +144,7 @@ export default function MarketCap() {
               )}
             </div>
           </div>
-        </div>
+        </a>
       )}
     </div>
   );
