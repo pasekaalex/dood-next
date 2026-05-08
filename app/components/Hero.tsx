@@ -1,15 +1,14 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 const CA = '4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
 const JUPITER_URL = 'https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&buy=4pzuXZwn4N2oGzrjnTv57FkD31eSqwnhx4w96uH1pump';
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const [shakeLogo, setShakeLogo] = useState(false);
   const [hovering, setHovering] = useState(false);
-  const logoRef = useRef<HTMLImageElement>(null);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(CA).then(() => {
@@ -19,8 +18,8 @@ export default function Hero() {
   };
 
   const handleLogoClick = () => {
-    setClicked(true);
-    setTimeout(() => setClicked(false), 300);
+    setShakeLogo(true);
+    setTimeout(() => setShakeLogo(false), 500);
   };
 
   return (
@@ -42,10 +41,9 @@ export default function Hero() {
         {/* Interactive Logo */}
         <div className="relative">
           <img
-            ref={logoRef}
             src="/logo-trim.png"
             alt="Dood"
-            className="cursor-pointer"
+            className={`cursor-pointer ${shakeLogo ? 'animate-shake' : ''}`}
             onClick={handleLogoClick}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
@@ -53,13 +51,12 @@ export default function Hero() {
               maxHeight: '200px',
               width: '90%',
               objectFit: 'contain',
-              transform: hovering ? 'scale(1.1) rotate(3deg)' : clicked ? 'scale(0.95) rotate(-5deg)' : 'scale(1)',
+              transform: hovering && !shakeLogo ? 'scale(1.1) rotate(3deg)' : 'scale(1)',
               transition: 'transform 0.2s ease',
               filter: hovering ? 'drop-shadow(0 0 20px rgba(212, 165, 116, 0.8))' : 'none',
             }}
           />
-          {/* Sparkle effects on hover */}
-          {hovering && (
+          {hovering && !shakeLogo && (
             <>
               <span style={{
                 position: 'absolute',
@@ -86,7 +83,7 @@ export default function Hero() {
           )}
         </div>
 
-        {/* Buy Button - Larger */}
+        {/* Buy Button */}
         <a
           href={JUPITER_URL}
           target="_blank"
@@ -105,7 +102,7 @@ export default function Hero() {
           Buy Dood
         </a>
 
-        {/* CA Copy Button - Larger */}
+        {/* CA Copy Button */}
         <button
           onClick={handleCopy}
           className="flex items-center justify-center gap-3 rounded-2xl bg-white px-5 py-4 cursor-pointer transition-all hover:scale-105 active:scale-95"
