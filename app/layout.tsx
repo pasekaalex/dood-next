@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Bangers, Nunito } from "next/font/google";
+import { Bangers, Nunito, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const bangers = Bangers({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-bangers",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  weight: "800",
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -39,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bangers.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${bangers.variable} ${nunito.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
         {children}
         <audio id="jazz-bg" src="/dood-jazz.mp3" autoPlay loop muted />

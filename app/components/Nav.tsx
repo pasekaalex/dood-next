@@ -16,7 +16,7 @@ export default function Nav() {
     <nav className="fixed top-0 left-0 right-0 z-50" style={{background: 'rgba(255,245,230,0.97)', backdropFilter: 'blur(8px)', borderBottom: '2px solid rgba(255,107,53,0.15)'}}>
       <div className="max-w-xl mx-auto flex items-center justify-between px-4 py-3">
 
-        <span style={{fontFamily: 'var(--font-bangers), cursive', fontSize: '1.8rem', letterSpacing: '3px', color: 'var(--primary)', textShadow: '2px 2px 0 var(--secondary)'}}>
+        <span style={{fontFamily: 'var(--font-mono), monospace', fontSize: '1.6rem', letterSpacing: '6px', color: 'var(--primary)', textShadow: '3px 3px 0 var(--secondary)', fontWeight: '800', textTransform: 'uppercase'}}>
           DOOD
         </span>
 
