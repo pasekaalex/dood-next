@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import Community from './components/Community';
 import MarketCap from './components/MarketCap';
+import FloatingControls from './components/FloatingControls';
 
 export default function Home() {
   const [audioStarted, setAudioStarted] = useState(false);
@@ -24,6 +25,7 @@ export default function Home() {
         <MarketCap />
         <Community />
       </div>
+      <FloatingControls />
     </main>
   );
 }
